@@ -7,6 +7,7 @@ body {
   display: block;
   width: 100%;
   margin: 0;
+  padding: 0;
   background-color: rgb(1, 65, 95);
   min-width: 320px;
   min-height: 100vh;

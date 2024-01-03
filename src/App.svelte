@@ -1,16 +1,18 @@
 <script>
-  import './app.css'
-  // import Counter from './lib/Counter.svelte'
+  import Navbar from './lib/Navbar.svelte'
 </script>
 
 
 <main>
-  <div class="headerdiv">
+  <Navbar items={["test1","test2","test3"]}/>
+
+  <div class="header">
     <div>
       <p class="titleline1">Hello, my name is</p>
       <h1 class="titleline2">Jayden Pahukula</h1>
     </div>
   </div>
+
 
   <div style="height:10000px" />
 
@@ -21,7 +23,7 @@
   main {
     background-color: rgb(1, 65, 95);
   }
-  .headerdiv {
+  .header {
     display: flex;
     flex-direction: column;
     justify-content: center;
