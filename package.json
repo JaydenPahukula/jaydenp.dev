@@ -8,7 +8,7 @@
     "build": "vite build --emptyOutDir",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist --nojekyll"
   },
   "devDependencies": {
     "@sveltejs/adapter-static": "^3.0.1",
