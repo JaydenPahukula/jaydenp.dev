@@ -26,8 +26,8 @@
     }
     li {
         list-style: none;
-        margin-right: 3rem;
-        font-size: 1.5rem;
+        margin-right: 2rem;
+        font-size: 1rem;
     }
     a {
         color: white;
