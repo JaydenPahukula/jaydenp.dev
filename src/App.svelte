@@ -7,7 +7,7 @@
 
 
 <main>
-  <Navbar items={["About","test2","test3"]}/>
+  <Navbar items={["About","Projects","test3"]}/>
 
   <div class="header">
     <div>
@@ -21,17 +21,31 @@
       title="About Me"
       image={headshot}
       imageAlt="Headshot of Jayden Pahukula"
+      imageLeftOrRight={false}
       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     />
+  </div>
 
+  <div class="section" id="Projects">
+    <Card
+      title="Projects"
+    />
     <Card
       image={headshot}
       header="About Me"
-      leftOrRight={true}
-      imageAlt="Headshot of Jayden Pahukula"
+      imageLeftOrRight={true}
+      text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    />
+    <Card
+      image={headshot}
+      header="About Me"
+      imageLeftOrRight={true}
       text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
@@ -54,7 +68,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 100vh;
+    height: 105vh;
     margin: 0;
     color: white;
     text-align: center;
@@ -68,6 +82,7 @@
     margin-top: 1rem;
   }
   .section {
+    margin-bottom: 40px;
     background-color: transparent;
     display: flex;
     flex-direction: column;

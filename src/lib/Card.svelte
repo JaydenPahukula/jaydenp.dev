@@ -1,60 +1,63 @@
 <script>
   export let title = "";
-  export let leftOrRight = false;
   export let image = "";
   export let imageAlt = ""
+  export let imageLeftOrRight = false;
   export let header = "";
   export let text = "";
 </script>
 
+
 <div class="card">
-  <h2>{title}</h2>
-  <div class={"contents "+(leftOrRight ? "left" : "right")}>
-    <div>
-      <h3>{header}</h3>
-      <p>{text}</p>
+  {#if title != ""}<h2>{title}</h2>{/if}
+  <div class="contents">
+    {#if image != ""}<img src={image} class={(imageLeftOrRight ? "floatLeft" : "floatRight")} alt={imageAlt}/>{/if}
+    <div class="textSection">
+      {#if header != ""}<h3>{header}</h3>{/if}
+      {#if text != ""}<p>{text}</p>{/if}
     </div>
-    <img src={image} alt={imageAlt}/>
   </div>
 </div>
 
+
 <style>
   .card {
-    max-width: 90vw;
+    width: 90vw;
+    max-width: 850px;
+    min-width: 400px;
     margin: auto;
-    margin-bottom: 4vw;
+    margin-bottom: 2vw;
     padding: 5px;
-    align-items: center;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0px 0px 15px 2px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 13px 1px rgba(0,0,0,0.5);
   }
   h2 {
-    font-size: 2rem;
+    display: block;
     text-align: center;
+    margin: 0.65rem;
+    font-size: 2rem;
   }
   h3 {
-    font-size: 1.5rem;
+    margin-top: 15px;
     text-align: center;
-  }
-  .contents {
-    display: flex;
-    flex-wrap: wrap-reverse;
-    justify-content: center;
-  }
-  .left {
-    flex-direction: row-reverse;
-  }
-  .right {
-    flex-direction: row;
+    font-size: 1.5rem;
   }
   p {
-    width: 500px;
+    font-size: 1rem;
   }
+  .contents {
+    display: block;
+  }
+  .textSection {
+    flex-grow: 1;
+  }
+  .floatLeft { float: left; }
+  .floatRight { float: right; }
   img {
-    height: 40vh;
-    margin: 10px;
-    flex-grow: -1;
-    border-radius: 16px;
+    width: 200px;
+    margin: 15px;
+    margin-top: 0px;
+    border-radius: 10px;
   }
 </style>
