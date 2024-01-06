@@ -7,6 +7,7 @@
 
 
 <main>
+
   <Navbar items={["About","Projects","Contact"]}/>
 
   <div class="header">
@@ -83,13 +84,18 @@
     </Card>
   </div>
 
+  <div id="backgroundDiv"/>
+
 </main>
 
 
 <style>
-  main {
-    background-color: rgb(1, 65, 95);
-    display: block;
+  #backgroundDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
   }
   .header {
     display: flex;

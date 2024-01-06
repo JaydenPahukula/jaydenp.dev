@@ -1,6 +1,10 @@
 :root {
   font-family: Helvetica, sans-serif;
-  color:black
+  color:black;
+}
+
+* {
+  z-index: 1;
 }
 
 body {
@@ -8,7 +12,6 @@ body {
   width: 100%;
   margin: 0;
   padding: 0;
-  background-color: rgb(1, 65, 95);
   min-width: 320px;
   min-height: 100vh;
 }
