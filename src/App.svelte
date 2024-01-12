@@ -105,6 +105,7 @@
     margin: 0;
     color: white;
     text-align: center;
+    text-shadow: 0px 0px 18px rgba(0,0,0,0.8);
   }
   .titleline1 {
     font-size: 3rem;
