@@ -41,12 +41,12 @@ let s = (sketch) => {
   }
   
 
-  sketch.windowResized = () => {
-    // resize canvas
-    global.canvas_width = document.body.scrollWidth;
-    global.canvas_height = document.body.scrollHeight;
-    sketch.createCanvas(global.canvas_width, global.canvas_height);
-  }
+  // sketch.windowResized = () => {
+  //   // resize canvas
+  //   global.canvas_width = document.body.scrollWidth;
+  //   global.canvas_height = document.body.scrollHeight;
+  //   sketch.createCanvas(global.canvas_width, global.canvas_height);
+  // }
 
 
   sketch.draw = () => {
