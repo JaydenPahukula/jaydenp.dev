@@ -130,7 +130,7 @@
   }
   h3 {
     font-size: 1.7rem;
-    margin: 1em 15px;
+    margin: 1em 15px 0 15px;
   }
   p {
     font-size: 1.2em;

@@ -6,7 +6,9 @@ import { LilyPad } from "./koipond/LilyPad.js";
 const PARENT_DIV = "backgroundDiv"
 
 const FISH_DENSITY = 0.000032; // fish per pixel
+const MAX_NUM_FISH = 200
 const LILY_PAD_DENSITY = 0.000012; // lily pads per pixel
+const MAX_NUM_LILY_PADS = 100;
 
 const BACKGROUND_COLOR = "#067BB1"
 // full color palatte: https://coolors.co/067bb1-5caf1d-e6e6e6-f49d2c-eb4a2a-313130
@@ -27,13 +29,12 @@ let s = (sketch) => {
     sketch.angleMode("DEGREES");
 
     // create fish
-    let num_fish = Math.floor(global.canvas_width * global.canvas_height * FISH_DENSITY);
-    
+    let num_fish = Math.min(Math.floor(global.canvas_width * global.canvas_height * FISH_DENSITY), MAX_NUM_FISH);
     for (let i = 0; i < num_fish; i++){
       fishies.push(new Fish());
     }
     // create lily pads
-    let num_lily_pads = Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY);
+    let num_lily_pads = Math.min(Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY), MAX_NUM_LILY_PADS);
     for (let i = 0; i < num_lily_pads; i++){
       lily_pads.push(new LilyPad(lily_pads));
     }
