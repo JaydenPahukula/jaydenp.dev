@@ -41,12 +41,18 @@ let s = (sketch) => {
   }
   
 
-  // sketch.windowResized = () => {
-  //   // resize canvas
-  //   global.canvas_width = document.body.scrollWidth;
-  //   global.canvas_height = document.body.scrollHeight;
-  //   sketch.createCanvas(global.canvas_width, global.canvas_height);
-  // }
+  sketch.windowResized = () => {
+    global.canvas_width = document.body.scrollWidth;
+    global.canvas_height = document.body.scrollHeight;
+    // create more lily pads
+    let new_num_lily_pads = Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY);
+    for (let i = lily_pads.length; i < new_num_lily_pads; i++){
+      lily_pads.push(new LilyPad(lily_pads));
+    }
+    // resize canvas
+    sketch.createCanvas(global.canvas_width, global.canvas_height).parent(PARENT_DIV);
+
+  }
 
 
   sketch.draw = () => {
