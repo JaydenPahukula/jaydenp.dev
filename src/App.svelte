@@ -17,7 +17,7 @@
     </div>
   </div>
 
-  <div class="section" id="About">
+  <section id="About">
     <Card>
       <h2>About Me</h2>
       <img src={headshot} alt="Jayden Pahukula" class="floatRight"/>
@@ -28,9 +28,9 @@
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
     </Card>
-  </div>
+  </section>
 
-  <div class="section" id="Projects">
+  <section id="Projects">
     <Card>
       <h2>Projects</h2>
     </Card>
@@ -70,9 +70,9 @@
         </p>
       </div>
     </Card>
-  </div>
+  </section>
 
-  <div class="section" id="Contact">
+  <section id="Contact">
     <Card>
       <h2>Contact</h2>
       <p class="textCentered">
@@ -82,7 +82,7 @@
         occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
     </Card>
-  </div>
+  </section>
 
   <div id="backgroundDiv"/>
 
@@ -114,7 +114,7 @@
     font-size: 5rem;
     margin-top: 1rem;
   }
-  .section {
+  section {
     padding-top: 8vh;
     padding-bottom: 1vh;
     background-color: transparent;
