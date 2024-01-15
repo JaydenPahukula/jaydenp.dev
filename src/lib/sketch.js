@@ -22,8 +22,8 @@ let s = (sketch) => {
   sketch.setup = () => {
 
     // initialize canvas
-    global.canvas_width = document.body.scrollWidth;
-    global.canvas_height = document.body.scrollHeight;
+    global.canvas_width = document.body.clientWidth;
+    global.canvas_height = document.body.clientHeight;
     sketch.createCanvas(global.canvas_width, global.canvas_height).parent(PARENT_DIV);
     sketch.frameRate(global.FPS);
     sketch.angleMode("DEGREES");
@@ -43,8 +43,8 @@ let s = (sketch) => {
   
 
   sketch.windowResized = () => {
-    global.canvas_width = document.body.scrollWidth;
-    global.canvas_height = document.body.scrollHeight;
+    global.canvas_width = document.body.clientWidth;
+    global.canvas_height = document.body.clientHeight;
     // create more lily pads
     let new_num_lily_pads = Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY);
     for (let i = lily_pads.length; i < new_num_lily_pads; i++){

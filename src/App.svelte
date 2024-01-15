@@ -96,6 +96,7 @@
     left: 0;
     width: 100%;
     z-index: 0;
+    overflow-x: hidden;
   }
   .header {
     display: flex;
@@ -115,8 +116,8 @@
     margin-top: 1rem;
   }
   section {
-    padding-top: 8vh;
-    padding-bottom: 1vh;
+    padding-top: 4h;
+    padding-bottom: 2vh;
     background-color: transparent;
     display: flex;
     flex-direction: column;
