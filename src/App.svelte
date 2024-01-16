@@ -3,6 +3,10 @@
   import Card from "./lib/Card.svelte";
 
   import headshot from "./assets/headshot.jpg"
+  import minesweeperPic from "./assets/minesweeper.png"
+  import dockerDashPic from "./assets/dockerdash.jpg"
+  import codePic from "./assets/code.png"
+  import fishPic from "./assets/fishies.png"
 </script>
 
 
@@ -22,10 +26,7 @@
       <h2>About Me</h2>
       <img src={headshot} alt="Jayden Pahukula" class="floatRight"/>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        I am junior studying computer science at Colorado School of Mines. *add more*
       </p>
     </Card>
   </section>
@@ -35,38 +36,57 @@
       <h2>Projects</h2>
     </Card>
     <Card>
-      <img src={headshot} alt="" class="floatLeft">
+      <img src={minesweeperPic} alt="minesweeper" class="floatLeft">
       <div>
-        <h3>Project1</h3>
+        <h3>Minesweeper</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          The classic game of Minesweeper, written in C++ using SFML.
+        </p>
+        <p>
+          Along the way I have learned a lot about C++, OOP principles, and developing a game from scratch. This
+          is an ongoing project, and I am currently working on an algorithm that can solve boards on its own.
         </p>
       </div>
     </Card>
     <Card>
-      <img src={headshot} alt="" class="floatRight">
+      <img src={dockerDashPic} alt="dockerdash" class="floatRight">
       <div>
-        <h3>Project2</h3>
+        <h3>Docker Dash</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Docker Dash is a dashboard for administrators to monitor server status and manage apps running as Docker
+          containers on a server. 
+        </p>
+        <p>
+          This is my 2023 summer internship project for the
+          <a href="https://arl.hawaii.edu" target="_blank">Applied Research Lab at the University of Hawai‘i</a>.
+        </p>
+        <p>
+          This was a team project, and I made the backend. I created a Python Flask API that interfaced with Docker that
+          could get hardware and user info, as well as create, stop and start containers. It also supported Docker
+          swarm mode, and came with installation scripts. I learned many technical skills like APIs, networking, and
+          scripting, but it was also very valuable to learn about documentation and collaborating with a team.
         </p>
       </div>
     </Card>
     <Card>
-      <img src={headshot} alt="" class="floatLeft">
+      <img src={codePic} alt="code" class="floatLeft">
       <div>
-        <h3>Project3</h3>
+        <h3>Competitive Programming</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-          occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          This is not exactly a project, it is a collection of my work solving competitive programming problems. This
+          year I am competing in ICPC and I am currently preparing for the 2024 North America Championship!
+        </p>
+      </div>
+    </Card>
+    <Card>
+      <img src={fishPic} alt="fish" class="floatRight">
+      <div>
+        <h3>This website!</h3>
+        <p>
+          This is my first experience with frontend development. I have been learning about html, css, javascript,
+          and everything related to the frontend. I created this website using Svelte (not sure that that was overkill),
+          and the background is made with p5js. There are some things like I would like to add, like maybe hosting some
+          of my projects here, but I am proud of what I have made!
         </p>
       </div>
     </Card>
@@ -74,13 +94,10 @@
 
   <section id="Contact">
     <Card>
-      <h2>Contact</h2>
-      <p class="textCentered">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
-        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
+      <h2>Contact Me</h2>
+      <p class="textCentered">Email: {atob("amF5ZGVuLnBhaHVrdWxhQGdtYWlsLmNvbQ==")}</p>
+      <p class="textCentered">Github: <a href="https://github.com/JaydenPahukula" target="_blank">https://github.com/JaydenPahukula</a></p>
+      <p class="textCentered">LinkedIn: <a href="https://linkedin.com/in/jaydenpahukula" target="_blank">https://linkedin.com/in/jaydenpahukula</a></p>
     </Card>
   </section>
 
@@ -131,11 +148,18 @@
   }
   h3 {
     font-size: 1.7rem;
-    margin: 1em 15px 0 15px;
+    margin: 0.7em 15px 0 15px;
   }
   p {
-    font-size: 1.2em;
-    margin: 15px;
+    font-size: 1.1em;
+    margin: 12px 15px;
+  }
+  a {
+    color: darkblue;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
   }
   img {
     width: 200px;
