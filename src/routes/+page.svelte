@@ -1,15 +1,16 @@
 <script>
-  import Navbar from "./lib/Navbar.svelte"
-  import Card from "./lib/Card.svelte";
-  import Button from "./lib/Button.svelte"
+  import Navbar from "../lib/Navbar.svelte"
+  import Card from "../lib/Card.svelte";
+  import Button from "../lib/Button.svelte"
 
-  import headshot from "./assets/headshot.jpg"
-  import minesweeperPic from "./assets/minesweeper.png"
-  import dockerDashPic from "./assets/dockerdash.jpg"
-  import codePic from "./assets/code.png"
-  import fishPic from "./assets/fishies.png"
+  import headshot from "../assets/headshot.jpg"
+  import minesweeperPic from "../assets/minesweeper.png"
+  import dockerDashPic from "../assets/dockerdash.jpg"
+  import codePic from "../assets/code.png"
+  import fishPic from "../assets/fishies.png"
 
-  import githubIcon from "./assets/github-icon-white.svg"
+  import githubIcon from "../assets/github-icon-white.svg"
+  import documentIcon from "../assets/document-icon.ico"
 </script>
 
 
@@ -41,6 +42,9 @@
         Scroll down and check out some projects that I have done, and for more information about my experience,
         check out my resume:
       </p>
+      <div class="centered">
+        <Button icon={documentIcon} text="Resume" link="/resume.pdf"/>
+      </div>
     </Card>
   </section>
 
@@ -74,7 +78,7 @@
       </p>
       <p>
         This is my 2023 summer internship project for the
-        <a href="https://arl.hawaii.edu" target="_blank">Applied Research Lab at the University of Hawai‘i</a>.
+        <a href="https://arl.hawaii.edu" target="noopener noreferrer">Applied Research Lab at the University of Hawai‘i</a>.
       </p>
       <p>
         This was a team project, and I made the backend. I created a Python Flask API that interfaced with Docker that
@@ -179,7 +183,7 @@
   }
   p {
     font-size: 1.1em;
-    margin: 0.75em 0px;
+    margin: 1em 0px;
   }
   a {
     color: darkblue;
@@ -192,6 +196,7 @@
     width: 200px;
     border-radius: 10px;
   }
+
   .floatLeft {
     float: left;
     margin-right: 16px;
@@ -202,5 +207,9 @@
   }
   .textCentered {
     text-align: center;
+  }
+  .centered {
+    display: flex;
+    justify-content: center;
   }
 </style>

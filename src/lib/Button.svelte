@@ -6,7 +6,7 @@
 
 
 <div class="button">
-    <a href={link}>
+    <a href={link} target="noopener noreferrer">
         <img src={icon} alt="github icon"/>
         <p>{text}</p>
     </a>
