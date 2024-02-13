@@ -6,7 +6,7 @@
   import headshot from "../assets/headshot.jpg"
   import minesweeperPic from "../assets/minesweeper.png"
   import dockerDashPic from "../assets/dockerdash.jpg"
-  import codePic from "../assets/code.png"
+  import minesmapPic from "../assets/minesmap.png"
   import fishPic from "../assets/fishies.png"
 
   import githubIcon from "../assets/github-icon-white.svg"
@@ -88,14 +88,25 @@
       </p>
     </Card>
     <Card>
-      <img src={codePic} alt="code" class="floatLeft">
+      <img src={minesmapPic} alt="code" class="floatLeft">
       <div class="projectHeader">
-        <h3>Competitive Programming</h3>
-        <Button icon={githubIcon} text="GitHub" link="https://github.com/JaydenPahukula/competitive-coding" />
+        <h3>Mines Map</h3>
+        <Button icon={githubIcon} text="GitHub" link="https://github.com/TheGreatRambler/MinesMap" />
       </div>
       <p>
-        This is not exactly a project, it is a collection of my work solving competitive programming problems. This
-        year I am competing in ICPC and I am currently preparing for the 2024 North America Championship!
+        An interactive map of the Mines campus to help guests and new students navigate inside buildings. This map
+        can show an interior view of each building, along with information about each room like room number, upcoming
+        events, and a street-view style 360° glimpse inside.
+      </p>
+      <p>
+        The map is a 3D model made in Blender with open street map data, and it is rendered using three.js. The website
+        is made with Solid.js and Tailwind CSS.
+      </p>
+      <p>
+        This project won 1st place in the advanced general track at the
+        <a href="https://blasterhacks.devpost.com/" target="noopener noreferrer">2024 BlasterHacks hackathon</a>, and I
+        worked on it with three other Mines students. It was a blast, and this is definitely a project that we want to
+        build into a full app in the future!
       </p>
     </Card>
     <Card>
