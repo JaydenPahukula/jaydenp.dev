@@ -29,7 +29,17 @@
       <h2>About Me</h2>
       <img src={headshot} alt="Jayden Pahukula" class="floatRight"/>
       <p>
-        I am junior studying computer science at Colorado School of Mines. *add more*
+        I am a junior at Colorado School of Mines, and I am a total nerd for computer science. I have a passion
+        for building things and solving problems, and I am very fortunate to be studying in a feild where I can
+        make a difference while doing something that I love.
+      </p>
+      <p>
+        In my free time I like playing piano, going hiking, and playing pickup volleyball. I also
+        do competitive coding, and I am currently preparing for the ICPC 2024 North America Championship!
+      </p>
+      <p>
+        Scroll down and check out some projects that I have done, and for more information about my experience,
+        check out my resume:
       </p>
     </Card>
   </section>
@@ -48,8 +58,8 @@
         The classic game of Minesweeper, written in C++ using SFML.
       </p>
       <p>
-        Along the way I have learned a lot about C++, OOP principles, and developing a game from scratch. This
-        is an ongoing project, and I am currently working on an algorithm that can solve boards on its own.
+        Throughout this project I have learned a lot about C++, OOP principles, and developing a game from scratch.
+        This is an ongoing project, and I am currently working on an algorithm that can solve boards on its own.
       </p>
     </Card>
     <Card>
@@ -92,8 +102,8 @@
       </div>
       <p>
         This is my first experience with frontend development. I have been learning about html, css, javascript,
-        and everything related to the frontend. I created this website using Svelte (not sure that that was overkill),
-        and the background is made with p5js.
+        and everything related to the frontend. I created this website using Svelte, and the background is made
+        with p5js.
       </p>
       <p>
         There are some things like I would like to add, like maybe hosting some
