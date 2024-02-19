@@ -3,7 +3,8 @@ import { global } from "./koipond/globals.js";
 import { Fish } from "./koipond/Fish.js";
 import { LilyPad } from "./koipond/LilyPad.js";
 
-const PARENT_DIV = "backgroundDiv"
+const CONTENT_DIV = "content";
+const PARENT_DIV = "background";
 
 const FISH_DENSITY = 0.000032; // fish per pixel
 const MAX_NUM_FISH = 200
@@ -22,8 +23,9 @@ let s = (sketch) => {
   sketch.setup = () => {
 
     // initialize canvas
-    global.canvas_width = document.body.clientWidth;
-    global.canvas_height = document.body.clientHeight;
+    global.canvas_width = document.getElementById(PARENT_DIV).clientWidth;
+    global.canvas_height = document.getElementById(CONTENT_DIV).clientHeight * 0.55;
+    console.log()
     sketch.createCanvas(global.canvas_width, global.canvas_height).parent(PARENT_DIV);
     sketch.frameRate(global.FPS);
     sketch.angleMode("DEGREES");
@@ -43,8 +45,8 @@ let s = (sketch) => {
   
 
   sketch.windowResized = () => {
-    global.canvas_width = document.body.clientWidth;
-    global.canvas_height = document.body.clientHeight;
+    global.canvas_width = document.getElementById(PARENT_DIV).clientWidth;
+    global.canvas_height = document.getElementById(CONTENT_DIV).clientHeight;
     // create more lily pads
     let new_num_lily_pads = Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY);
     for (let i = lily_pads.length; i < new_num_lily_pads; i++){
