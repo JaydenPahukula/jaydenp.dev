@@ -4,8 +4,8 @@ import * as rand from "./random.js";
 
 
 // =============== LILY PAD PARAMETERS ===============
-const MIN_RADIUS = 90;
-const MAX_RADIUS = 160;
+const MIN_RADIUS = 140;
+const MAX_RADIUS = 220;
 const BITE_ANGLE = 25;
 const COLOR = "#5CAF1D";
 const SHADOW_OPACITY = 30; //0-255

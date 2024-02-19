@@ -7,8 +7,8 @@ import * as rand from "./random.js";
 // body
 const MAX_SIZE = 1.7;
 const MIN_SIZE = 0.9;
-const BODY_WIDTH = 18;
-const SEGMENT_LENGTH = 3.6;
+const BODY_WIDTH = 25;
+const SEGMENT_LENGTH = 5;
 const COLORS = ["#E6E6E6","#E6E6E6","#EB4A2A","#EB4A2A","#F49D2C","#313130"];
 const NUM_SEGMENTS = 20;
 const BODY_PROFILE = [0.00, 0.65, 0.85, 0.95, 0.98, 1.00, 0.98, 0.96, 0.94, 0.91,
@@ -48,6 +48,7 @@ export class Fish {
     let posx = rand.int(-global.CANVAS_MARGIN, global.canvas_width+global.CANVAS_MARGIN);
     let posy = rand.int(-global.CANVAS_MARGIN, global.canvas_height+global.CANVAS_MARGIN);
     this.pos = new vec.Vector(posx,posy);
+    this.outOfBounds = this.#checkOutOfBounds();
     
     // start swimming at random angle
     let angle = rand.float(0,360);
@@ -77,7 +78,6 @@ export class Fish {
     }
     this.primary_color = COLORS[color1];
     this.secondary_color = COLORS[color2];
-    
 
     this.oscillation_speed = OSCILLATION_SPEED / this.size;
     this.oscillation_amplitude = OSCILLATION_AMPLITUDE;
@@ -101,13 +101,15 @@ export class Fish {
     
     // take 50 steps to make sure fish is not crumpled up when spawned
     for (let i = 0; i < 100; i++){
-      this.move([]);
+      this.move([], true);
     }
   }
   
   
-  // move the fish
-  move(arr){
+  // move the fish (force = move even if out of bounds)
+  move(arr, force=false){
+    this.outOfBounds = this.#checkOutOfBounds();
+    if (!force && this.outOfBounds) return;
 
     // update acceleration
     this.acc = vec.add(this.acc, this.#getBehavior(arr));
@@ -129,8 +131,6 @@ export class Fish {
     } else if (this.vel.magnitude() < MIN_VEL){
       this.vel = vec.scale(this.vel, MIN_VEL/this.vel.magnitude());
     }
-
-    //if (global.t % 40 == 1) console.log(this.acc, this.vel);
     
     // update position
     this.pos = vec.add(this.pos, this.vel);
@@ -163,11 +163,16 @@ export class Fish {
       this.body_left[i] = vec.add(this.body[i], vector);
       this.body_right[i] = vec.subtract(this.body[i], vector);
     }
+
+    // update out of bounds
+    this.outOfBounds = this.#checkOutOfBounds();
   }
   
   
   // draw the fish
   draw(sketch){
+    // do not draw if out of bounds
+    if (this.outOfBounds) return;
 
     // draw body
     sketch.noStroke();
@@ -210,34 +215,14 @@ export class Fish {
       }
     }
     
-    // // draw tail
-    // sketch.fill(this.primary_color);
-    // let startSeg = vec.subtract(this.body[0], this.body[1]);
-    // let endSeg = vec.subtract(this.body[NUM_SEGMENTS-2], this.body[NUM_SEGMENTS-1]);
-    // let angle = (endSeg.direction()-startSeg.direction()) * TAIL_SWAY;
-    // let tailDirection = vec.scale(vec.norm(vec.rotated(endSeg, Math.PI+angle)), this.tail_length);
-    // let point1 = this.body[NUM_SEGMENTS-1];
-    // let point2 = vec.add(this.body[NUM_SEGMENTS-1], tailDirection);
-    // let point3 = vec.add(point2, new vec.Vector(-1,-1));
-    // point2 = vec.add(point2, new vec.Vector(1,1));
-    // sketch.triangle(point1.x, point1.y, point2.x, point2.y, point3.x, point3.y);
-    
-    // // draw eyes
-    // sketch.noStroke();
-    // sketch.fill(EYE_COLOR);
-    // // left eye
-    // let angle1 = vec.subtract(this.body_left[0],this.body_left[1]).direction()*180/Math.PI;
-    // let angle2 = vec.subtract(this.body_left[2],this.body_left[1]).direction()*180/Math.PI;
-    // sketch.arc(this.body_left[1].x, this.body_left[1].y, this.eye_size, this.eye_size, angle1, angle2);
-    // // right eye
-    // angle1 = vec.subtract(this.body_right[0],this.body_right[1]).direction()*180/Math.PI;
-    // angle2 = vec.subtract(this.body_right[2],this.body_right[1]).direction()*180/Math.PI;
-    // sketch.arc(this.body_right[1].x, this.body_right[1].y, this.eye_size, this.eye_size, angle2, angle1);
   }
   
   
   // draw the fish's shadow
   drawShadow(sketch){
+    // do not draw if out of bounds
+    if (this.outOfBounds) return;
+
     sketch.noStroke();
     sketch.fill(0,0,0,SHADOW_OPACITY);
     sketch.translate(SHADOW_OFFSET_X, SHADOW_OFFSET_Y);
@@ -253,11 +238,16 @@ export class Fish {
     sketch.endShape();
     sketch.translate(-SHADOW_OFFSET_X, -SHADOW_OFFSET_Y);
   }
-  
+
+  // check if fish is in bounds (can be seen)
+  #checkOutOfBounds(){
+    const dy = global.scroll_y;
+    return this.pos.y < -global.CANVAS_MARGIN + dy ||
+      this.pos.y > global.screen_height + global.CANVAS_MARGIN + dy;
+  }
   
   // calculate fish's behavior (boids)
   #getBehavior(fishArr){
-
     let total = 0;
     let seperation = new vec.Vector(0,0);
     let alignment = new vec.Vector(0,0);
@@ -267,6 +257,8 @@ export class Fish {
       // do not compare against self
       let other = fishArr[i];
       if (other == this) continue;
+      // do not compare against fish out of bounds
+      if (other.outOfBounds) continue;
       // check if in sight range
       let diff = vec.subtract(this.pos, other.pos);
       if (diff.magnitude() > SIGHT_RANGE) continue;
