@@ -15,11 +15,11 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        position: fixed;
+        position: sticky;
         top: 0; left: 0;
         width: 100%;
         background-image: linear-gradient(rgba(0,0,0,0.5), transparent);
-        z-index: 2;
+        z-index: 1;
     }
     ul {
         display: flex;

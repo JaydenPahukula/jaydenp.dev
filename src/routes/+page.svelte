@@ -15,11 +15,11 @@
 
 
 <main>
+  <Navbar items={["About","Projects","Contact"]}/>
 
   <div id="background"/>
 
   <div id="content">
-    <Navbar items={["About","Projects","Contact"]}/>
 
     <div class="header">
       <div>
