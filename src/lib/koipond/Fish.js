@@ -99,7 +99,7 @@ export class Fish {
       });
     }
     
-    // take 50 steps to make sure fish is not crumpled up when spawned
+    // take 100 steps to make sure fish is not crumpled up when spawned
     for (let i = 0; i < 100; i++){
       this.move([], true);
     }
@@ -117,6 +117,13 @@ export class Fish {
     if (rand.int(0, Math.floor(1/this.random_turn_prob)) == 0){
       let randomTurn = new vec.Vector(rand.float(-1,1),rand.float(-1,1))
       this.acc = vec.add(this.acc, vec.scale(randomTurn, RANDOM_TURN_STRENGTH));
+    }
+    // fish can only turn maximum of 90 degrees
+    let angleBetween = (this.acc.direction() - this.vel.direction()) % (2*Math.PI)
+    if (angleBetween <= Math.PI && angleBetween > Math.PI/2){
+      this.acc = vec.scale(vec.norm(vec.orth(this.vel)), this.acc.magnitude());
+    } else if (angleBetween > Math.PI && angleBetween < 3*Math.PI/2){
+      this.acc = vec.scale(vec.norm(vec.orth(this.vel)), -this.acc.magnitude());
     }
     // resistance
     this.acc = vec.scale(this.acc, RESISTANCE_VAL);
