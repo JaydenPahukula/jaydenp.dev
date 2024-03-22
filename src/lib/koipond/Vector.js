@@ -68,3 +68,9 @@ export function rotated(v, angle){
 export function dot(v1, v2){
   return v1.x*v2.x + v1.y*v2.y;
 }
+
+// bound angle between -pi and pi
+export function boundAngle(angle){
+  while (angle < 0) angle += 2*Math.PI;
+  return (angle + Math.PI) % (2*Math.PI) - Math.PI;
+}

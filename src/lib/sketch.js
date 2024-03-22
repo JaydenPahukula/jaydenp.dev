@@ -4,7 +4,7 @@ import { Fish } from "./koipond/Fish.js";
 import { LilyPad } from "./koipond/LilyPad.js";
 
 
-const FISH_DENSITY = 0.000014; // fish per pixel
+const FISH_DENSITY = 0.000016; // fish per pixel
 const MAX_NUM_FISH = 130
 const LILY_PAD_DENSITY = 0.000004; // lily pads per pixel
 const MAX_NUM_LILY_PADS = 50;
