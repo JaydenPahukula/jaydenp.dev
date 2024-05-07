@@ -24,22 +24,16 @@ const MAX_SPOT_DEPTH = 2.9;
 const SHADOW_OPACITY = 30; //0-255
 const SHADOW_OFFSET_X = 6;
 const SHADOW_OFFSET_Y = 6;
-// movement
-const MAX_VEL = 4;
-const MIN_VEL = 1;
+// movement and behavior
+const MAX_VEL = 5;
+const MIN_VEL = 2;
 const THRUST_STRENGTH = 3.5;
-const RESISTANCE_VAL = 0.956;
+const RESISTANCE_VAL = 0.025;
 const TURN_SPEED = 0.1;
 const MAX_TURN_ANGLE = Math.PI/3;//rads
-// behavior
-const OSCILLATION_PERIOD = 15;
-const OSCILLATION_AMPLITUDE = 0.04;
-const RANDOM_TURN_PROB = 0.007;
-const SIGHT_RANGE = 200;
-const SEPERATION_COEF = 0.7;
-const ALIGNMENT_COEF = 1.8;
-const COHESION_COEF = 1;
-const BEHAVIOR_STRENGTH = 0.000015;
+const OSCILLATION_PERIOD = 11;
+const OSCILLATION_AMPLITUDE = 0.03;
+const RANDOM_TURN_PROB = 0.005;
 // ===================================================
 
 
@@ -53,11 +47,10 @@ export class Fish {
     this.outOfBounds = this.#checkOutOfBounds();
     
     // start swimming at random angle
-    this.angle = 0;
-    let startAngle = rand.float(0, 2*Math.PI);
-    this.vel = new vec.Vector(MAX_VEL*Math.cos(startAngle),MAX_VEL*Math.sin(startAngle));
+    this.angle = rand.float(-Math.PI, Math.PI);
+    this.vel = new vec.Vector(MAX_VEL*Math.cos(this.angle),MAX_VEL*Math.sin(this.angle));
     
-    // this.size is used for scaling all other attributes
+    // this.size is used to scale other attributes of the fish
     this.size = rand.float(MIN_SIZE, MAX_SIZE)
     
     // body
@@ -79,14 +72,6 @@ export class Fish {
     }
     this.primary_color = COLORS[color1];
     this.secondary_color = COLORS[color2];
-
-    // behavior
-    this.thrust_strength = THRUST_STRENGTH * Math.sqrt(this.size);
-    this.oscillation_period = OSCILLATION_PERIOD * this.size;
-    this.oscillation_amplitude = OSCILLATION_AMPLITUDE / this.size;
-    this.oscillation_offset = rand.float(0, 2*Math.PI*this.oscillation_period);
-    this.random_turn_prob = RANDOM_TURN_PROB / this.size;
-    this.behavior_strength = BEHAVIOR_STRENGTH / this.size;
     
     // add spots
     this.spots = [];
@@ -99,49 +84,49 @@ export class Fish {
         height: rand.int(MIN_SPOT_HEIGHT, MAX_SPOT_HEIGHT+1),
         // how far the spot etends onto the body (1 = to the center, 2 = whole fish)
         depth: rand.float(MIN_SPOT_DEPTH, MAX_SPOT_DEPTH),
-         // which side the spot is on
+        // which side the spot is on
         side: rand.bool()
       });
     }
     
-    // take 100 steps to make sure fish is not crumpled up when spawned
-    for (let i = 0; i < 100; i++){
-      this.move([]);
+    // movement
+    this.oscillation_period = OSCILLATION_PERIOD * this.size * this.size;
+    this.oscillation_amplitude = OSCILLATION_AMPLITUDE / this.size;
+    this.oscillation_offset = rand.float(0, 2*Math.PI*this.oscillation_period);
+    this.random_turn_prob = RANDOM_TURN_PROB / this.size; // big fish turn less
+    this.speed_factor = Math.sqrt(MAX_SIZE / this.size);
+
+    // take 50 steps to make sure fish is not crumpled up when created
+    for (let i = 0; i < 30; i++){
+      this.move();
     }
   }
   
   
   // move the fish
-  move(arr){
+  move(){
 
-    // update acceleration
-    let behavior = this.#getBehavior(arr);
-    let behavior_angle = vec.boundAngle(behavior.direction());
-    this.angle += (behavior_angle - this.angle) * this.behavior_strength * behavior.magnitude();
     // apply oscillations
     let oscillation = Math.sin(global.t / this.oscillation_period + this.oscillation_offset) * this.oscillation_amplitude;
     this.angle += oscillation;
     // apply random turn
     if (rand.int(0, Math.floor(1/this.random_turn_prob)) == 0){
-      let randomTurn = rand.float(-MAX_TURN_ANGLE, MAX_TURN_ANGLE);
+      let randomTurn = rand.float(-2*MAX_TURN_ANGLE, 2*MAX_TURN_ANGLE);
       this.angle += randomTurn;
     }
+    this.angle = vec.boundAngle(this.angle);
     // clamp turn angle
-    let angleBetween = vec.boundAngle(this.angle - this.vel.direction());
-    if (angleBetween < Math.PI && angleBetween > MAX_TURN_ANGLE){
-      this.angle = this.vel.direction() + MAX_TURN_ANGLE;
-    } else if (angleBetween > Math.PI && angleBetween < 2*Math.PI-MAX_TURN_ANGLE){
-      this.angle = this.vel.direction() - MAX_TURN_ANGLE;
-    }
-    
-    // update velocity
-    let turn = (this.angle - this.vel.direction()) * TURN_SPEED;
-    this.vel = vec.rotated(this.vel, (this.angle-this.vel.direction())*TURN_SPEED);
+    let turn = vec.boundAngle(this.angle - this.vel.direction()) * TURN_SPEED;
+    turn = Math.min(turn, MAX_TURN_ANGLE);
+    turn = Math.max(turn, -MAX_TURN_ANGLE);
+
+    // turn to velocity
+    this.vel = vec.rotated(this.vel, turn);
     // turns produce thrust
-    let thrust = (1 - Math.pow(2, -Math.abs(turn))) * this.thrust_strength;
+    let thrust = (1 - Math.pow(2, -Math.abs(turn))) * THRUST_STRENGTH;//this.thrust_strength;
     this.vel = vec.scale(this.vel, 1+thrust);
     // resistance
-    this.vel = vec.scale(this.vel, RESISTANCE_VAL);
+    this.vel = vec.scale(this.vel, 1-(RESISTANCE_VAL*this.speed_factor));
     // bound velocity
     if (this.vel.magnitude() > MAX_VEL){
       this.vel = vec.scale(this.vel, MAX_VEL/this.vel.magnitude());
@@ -149,8 +134,8 @@ export class Fish {
       this.vel = vec.scale(this.vel, MIN_VEL/this.vel.magnitude());
     }
     
-    // update position
-    this.pos = vec.add(this.pos, this.vel);
+    // update position (and apply speed factor)
+    this.pos = vec.add(this.pos, vec.scale(this.vel, this.speed_factor));
     // wrap around canvas
     if (this.pos.x < -global.CANVAS_MARGIN) this.pos.x = global.canvas_width+global.CANVAS_MARGIN;
     if (this.pos.x > global.canvas_width+global.CANVAS_MARGIN) this.pos.x = -global.CANVAS_MARGIN;
@@ -230,9 +215,10 @@ export class Fish {
     }
     // for testing
     // sketch.strokeWeight(2);
+    // sketch.stroke("#FF0000");
+    // sketch.line(this.pos.x, this.pos.y, this.pos.x+50*Math.cos(this.angle), this.pos.y+50*Math.sin(this.angle));
     // sketch.stroke("#FFFFFF");
-    // let len = SIGHT_RANGE;
-    // sketch.line(this.pos.x, this.pos.y, this.pos.x+len*Math.cos(this.angle), this.pos.y+len*Math.sin(this.angle));
+    // sketch.line(this.pos.x, this.pos.y, this.pos.x+50*Math.cos(this.vel.direction()), this.pos.y+50*Math.sin(this.vel.direction()));
   }
   
   
@@ -262,42 +248,6 @@ export class Fish {
     const dy = global.scroll_y;
     return this.pos.y < -global.CANVAS_MARGIN + dy ||
       this.pos.y > global.screen_height + global.CANVAS_MARGIN + dy;
-  }
-  
-  // calculate fish's behavior (boids)
-  #getBehavior(fishArr){
-    let count = 0;
-    let seperation = new vec.Vector(0,0);
-    let alignment = new vec.Vector(0,0);
-    let cohesion = new vec.Vector(0,0);
-
-    for (let i = 0; i < fishArr.length; i++){
-      // do not compare against self
-      let other = fishArr[i];
-      if (other == this) continue;
-      // do not compare against fish out of bounds
-      if (other.outOfBounds) continue;
-      // check if in sight range
-      let diff = vec.subtract(this.pos, other.pos);
-      if (diff.magnitude() > SIGHT_RANGE) continue;
-      
-      // add to calculations
-      seperation = vec.add(seperation, vec.scale(diff, -1/diff.magnitude()));
-      alignment = vec.add(alignment, other.vel);
-      cohesion = vec.add(cohesion, other.pos);
-      count += 1;
-    }
-
-    // average and weight
-    if (count > 0){
-      seperation = vec.scale(seperation, SEPERATION_COEF/count);
-      alignment = vec.scale(alignment, ALIGNMENT_COEF/count);
-      cohesion = vec.scale(cohesion, COHESION_COEF/count);
-    }
-    // add together
-    let behavior = vec.add(seperation, alignment, cohesion);
-
-    return behavior;
   }
   
 }

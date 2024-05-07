@@ -4,8 +4,8 @@ import { Fish } from "./koipond/Fish.js";
 import { LilyPad } from "./koipond/LilyPad.js";
 
 
-const FISH_DENSITY = 0.000016; // fish per pixel
-const MAX_NUM_FISH = 130
+const FISH_DENSITY = 0.000006; // fish per pixel
+const MAX_NUM_FISH = 130;
 const LILY_PAD_DENSITY = 0.000004; // lily pads per pixel
 const MAX_NUM_LILY_PADS = 50;
 
@@ -62,7 +62,7 @@ let s = (sketch) => {
     sketch.background(BACKGROUND_COLOR);
 
     // move fish
-    for (let i = 0; i < fishies.length; i++) fishies[i].move(fishies);
+    for (let i = 0; i < fishies.length; i++) fishies[i].move();
     
     // draw shadows
     for (let i = 0; i < fishies.length; i++) fishies[i].drawShadow(sketch);
