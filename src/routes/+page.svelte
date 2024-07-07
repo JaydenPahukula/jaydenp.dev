@@ -37,7 +37,7 @@
       </p>
       <p>
         In my free time I like playing piano, going hiking, and playing pickup volleyball. I also
-        do competitive coding, and I am currently preparing for the ICPC 2024 North America Championship!
+        love competitive coding, and I recently competed in the ICPC 2024 North America Championship!
       </p>
       <p>
         Scroll down and check out some projects that I have done, and for more information about my experience,
