@@ -1,0 +1,184 @@
+:root {
+  font-family: Helvetica, sans-serif;
+  color: black;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+main {
+  position: relative;
+  height: 100vh;
+  inset: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  perspective: 1px;
+  perspective-origin: center center;
+}
+
+#background {
+  position: absolute;
+  inset: 0 -20px 0 0; /* because of funky things with the scroll bar */
+  transform: translateZ(-2px) scale(3);
+  z-index: -1;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+  color: white;
+  text-align: center;
+  text-shadow: 0px 0px 18px rgba(0, 0, 0, 0.8);
+}
+
+.titleline1 {
+  font-size: 3rem;
+}
+
+.titleline2 {
+  font-size: 5rem;
+  margin-top: 1rem;
+}
+
+section {
+  padding-top: 4h;
+  padding-bottom: 2vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+h2 {
+  display: block;
+  text-align: center;
+  margin: 0px;
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 1.7rem;
+  margin: 0px;
+}
+
+.projectHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+}
+
+p {
+  font-size: 1.1em;
+  margin: 1em 0px;
+}
+
+.link {
+  color: darkblue;
+  text-decoration: none;
+}
+
+.link:hover,
+.link:active {
+  text-decoration: underline;
+}
+
+.floatLeft {
+  float: left;
+  margin-right: 16px;
+}
+.floatRight {
+  float: right;
+  margin-left: 16px;
+}
+.textCentered {
+  text-align: center;
+}
+.centered {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 90vw;
+  max-width: 850px;
+  min-width: 400px;
+  color: black;
+  margin: auto;
+  margin-bottom: 2vw;
+  padding: 16px;
+  background-color: rgb(245, 245, 245);
+  border-radius: 10px;
+  box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.5);
+}
+
+.card-img {
+  width: 200px;
+  border-radius: 10px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), transparent);
+  z-index: 1;
+}
+
+.navbar-link {
+  color: white;
+  transition: color 0.5s;
+  text-decoration: none;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  margin-right: 2rem;
+}
+
+.navbar-link:hover,
+.navbar-link:active {
+  color: lightgray;
+}
+
+.button {
+  margin: 0px;
+  padding: 0px;
+  height: 36px;
+  outline: none;
+  border: none;
+  border-radius: 50vh;
+  background-color: rgb(20, 63, 170);
+  padding: 6px 12px;
+}
+
+.button:hover,
+.button:active {
+  background-color: rgb(60, 98, 196);
+}
+
+.button-link {
+  display: flex;
+  align-items: center;
+}
+
+.button-icon {
+  float: left;
+  height: 24px;
+  width: 24px;
+}
+
+.button-text {
+  margin: 0 1ch 0 0.5ch;
+  float: left;
+  color: white;
+}

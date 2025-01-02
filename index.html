@@ -4,11 +4,253 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jayden Pahukula</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico?">
+    <link rel="icon" type="image/x-icon" href="favicon.ico?" />
+    <link rel="stylesheet" href="src/index.css" />
+    <script defer type="module" src="src/background/sketch.js"></script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <main id="main">
+      <div id="background"></div>
+
+      <div class="navbar">
+        <a href="#About" class="navbar-link">About</a>
+        <a href="#Projects" class="navbar-link">Projects</a>
+        <a href="#Contact" class="navbar-link">Contact</a>
+      </div>
+
+      <div class="header">
+        <div>
+          <p class="titleline1">Hello, my name is</p>
+          <h1 class="titleline2">Jayden Pahukula</h1>
+        </div>
+      </div>
+
+      <section id="About">
+        <div class="card">
+          <h2>About Me</h2>
+          <img
+            src="/assets/headshot.jpg"
+            alt="Jayden Pahukula"
+            class="floatRight card-img"
+          />
+          <p>
+            I am a junior at Colorado School of Mines, and I am a total nerd for
+            computer science. I have a passion for building things and solving
+            problems, and I am very fortunate to be studying in a feild where I
+            can make a difference while doing something that I love.
+          </p>
+          <p>
+            In my free time I like playing piano, going hiking, and playing
+            pickup volleyball. I also love competitive coding, and I recently
+            competed in the ICPC 2024 North America Championship!
+          </p>
+          <p>
+            Scroll down and check out some projects that I have done, and for
+            more information about my experience, check out my resume:
+          </p>
+          <div class="centered">
+            <button class="button">
+              <a
+                class="button-link"
+                href="/resume.pdf"
+                target="noopener noreferrer"
+              >
+                <img
+                  class="button-icon"
+                  src="/assets/document-icon.ico"
+                  alt="document icon"
+                />
+                <p class="button-text">Resume</p>
+              </a>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section id="Projects">
+        <div class="card">
+          <h2>Projects</h2>
+        </div>
+        <div class="card">
+          <img
+            src="/assets/minesweeper.png"
+            alt="minesweeper"
+            class="floatLeft card-img"
+          />
+          <div class="projectHeader">
+            <h3>Minesweeper</h3>
+            <button class="button">
+              <a
+                class="button-link"
+                href="https://github.com/JaydenPahukula/minesweeper"
+                target="noopener noreferrer"
+              >
+                <img
+                  class="button-icon"
+                  src="/assets/github-icon-white.svg"
+                  alt="Github icon"
+                />
+                <p class="button-text">Github</p>
+              </a>
+            </button>
+          </div>
+          <p>The classic game of Minesweeper, written in C++ using SFML.</p>
+          <p>
+            Throughout this project I have learned a lot about C++, OOP
+            principles, and developing a game from scratch. This is an ongoing
+            project, and I am currently working on an algorithm that can solve
+            boards on its own.
+          </p>
+        </div>
+        <div class="card">
+          <img
+            src="/assets/dockerdash.jpg"
+            alt="dockerdash"
+            class="floatRight card-img"
+          />
+          <div class="projectHeader">
+            <h3>Docker Dash</h3>
+            <button class="button">
+              <a
+                class="button-link"
+                href="https://github.com/jaxsonp/docker-dash"
+                target="noopener noreferrer"
+              >
+                <img
+                  class="button-icon"
+                  src="/assets/github-icon-white.svg"
+                  alt="Github icon"
+                />
+                <p class="button-text">Github</p>
+              </a>
+            </button>
+          </div>
+          <p>
+            Docker Dash is a dashboard for administrators to monitor server
+            status and manage apps running as Docker containers on a server.
+          </p>
+          <p>
+            This is my 2023 summer internship project for the
+            <a
+              class="link"
+              href="https://arl.hawaii.edu"
+              target="noopener noreferrer"
+              >Applied Research Lab at the University of Hawai‘i</a
+            >.
+          </p>
+          <p>
+            This was a team project, and I made the backend. I created a Python
+            Flask API that interfaced with Docker that could get hardware and
+            user info, as well as create, stop and start containers. It also
+            supported Docker swarm mode, and came with installation scripts. I
+            learned many technical skills like APIs, networking, and scripting,
+            but it was also very valuable to learn about documentation and
+            collaborating with a team.
+          </p>
+        </div>
+        <div class="card">
+          <img
+            src="/assets/minesmap.png"
+            alt="code"
+            class="floatLeft card-img"
+          />
+          <div class="projectHeader">
+            <h3>Mines Map</h3>
+            <button class="button">
+              <a
+                class="button-link"
+                href="https://github.com/JaydenPahukula/minesweeper"
+                target="noopener noreferrer"
+              >
+                <img
+                  class="button-icon"
+                  src="/assets/github-icon-white.svg"
+                  alt="Github icon"
+                />
+                <p class="button-text">Github</p>
+              </a>
+            </button>
+          </div>
+          <p>
+            An interactive map of the Mines campus to help guests and new
+            students navigate inside buildings. This map can show an interior
+            view of each building, along with information about each room like
+            room number, upcoming events, and a street-view style 360° glimpse
+            inside.
+          </p>
+          <p>
+            The map is a 3D model made in Blender with open street map data, and
+            it is rendered using three.js. The website is made with Solid.js and
+            Tailwind CSS.
+          </p>
+          <p>
+            This project won 1st place in the advanced general track at the
+            <a
+              class="link"
+              href="https://blasterhacks.devpost.com/"
+              target="noopener noreferrer"
+              >2024 BlasterHacks hackathon</a
+            >, and I worked on it with three other Mines students. It was a
+            blast, and this is definitely a project that we want to build into a
+            full app in the future!
+          </p>
+        </div>
+        <div class="card">
+          <img
+            src="/assets/fishies.png"
+            alt="fish"
+            class="floatRight card-img"
+          />
+          <div class="projectHeader">
+            <h3>This website!</h3>
+            <button
+              icon="/assets/github-icon-white.svg"
+              text="GitHub"
+              link="https://github.com/JaydenPahukula/JaydenPahukula.github.io"
+            ></button>
+          </div>
+          <p>
+            This is my first experience with frontend development. I have been
+            learning about html, css, javascript, and everything related to the
+            frontend. I created this website using Svelte, and the background is
+            made with p5js.
+          </p>
+          <p>
+            There are some things like I would like to add, like maybe hosting
+            some of my projects here, but I am proud of what I have made!
+          </p>
+        </div>
+      </section>
+
+      <section id="Contact">
+        <div class="card">
+          <h2>Contact Me</h2>
+          <p id="email" class="textCentered">
+            <script>
+              document.getElementById("email").innerText =
+                `Email: ${atob("amF5ZGVuLnBhaHVrdWxhQGdtYWlsLmNvbQ==")}`;
+            </script>
+          </p>
+          <p class="textCentered">
+            Github:
+            <a
+              class="link"
+              href="https://github.com/JaydenPahukula"
+              target="_blank"
+              >https://github.com/JaydenPahukula</a
+            >
+          </p>
+          <p class="textCentered">
+            LinkedIn:
+            <a
+              class="link"
+              href="https://linkedin.com/in/jaydenpahukula"
+              target="_blank"
+              >https://linkedin.com/in/jaydenpahukula</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
   </body>
-  <script type="module" src="src/lib/sketch.js"></script>
 </html>

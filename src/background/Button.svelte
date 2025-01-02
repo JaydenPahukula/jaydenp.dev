@@ -14,11 +14,7 @@
 
 
 <style>
-    .button {
-        display: inline-block;
-        margin: 0px;
-        height: 36;
-    }
+    
     a {
         display: flex;
         flex-direction: row;
@@ -31,14 +27,9 @@
         background-color: rgb(60, 98, 196);
     }
     img {
-        float: left;
-        height: 24px;
+        
     }
     p {
-        margin: 0;
-        margin-left: 1ch;
-        margin-right: 0.5ch;
-        float: left;
-        color: white;
+        
     }
 </style>
