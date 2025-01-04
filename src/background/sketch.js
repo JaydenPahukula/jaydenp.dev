@@ -9,25 +9,19 @@ const LILY_PAD_DENSITY = 0.000004; // lily pads per pixel
 const MAX_NUM_LILY_PADS = 50;
 
 const BACKGROUND_COLOR = "#067BB1";
-// full color palatte: https://coolors.co/067bb1-5caf1d-e6e6e6-f49d2c-eb4a2a-313130
 
 const _app = new p5((sketch) => {
+  let canvas;
   let fishies = [];
   let lily_pads = [];
 
   sketch.setup = () => {
     // initialize canvas
-    global.canvas_width = document.getElementById(
-      global.BACKGROUND_DIV_ID
-    ).clientWidth;
-    global.canvas_height = document.getElementById(
-      global.MAIN_DIV_ID
-    ).scrollHeight;
-    global.screen_height = document.getElementById(
-      global.MAIN_DIV_ID
-    ).clientHeight;
+    global.canvas_width = document.body.clientWidth;
+    global.canvas_height = document.body.scrollHeight;
+    global.screen_height = document.body.clientHeight;
     global.scroll_y = 0;
-    sketch
+    canvas = sketch
       .createCanvas(global.canvas_width, global.canvas_height)
       .parent(global.BACKGROUND_DIV_ID);
     sketch.frameRate(global.FPS);
@@ -52,15 +46,9 @@ const _app = new p5((sketch) => {
   };
 
   sketch.windowResized = () => {
-    global.canvas_width = document.getElementById(
-      global.BACKGROUND_DIV_ID
-    ).clientWidth;
-    global.canvas_height = document.getElementById(
-      global.MAIN_DIV_ID
-    ).scrollHeight;
-    global.screen_height = document.getElementById(
-      global.MAIN_DIV_ID
-    ).clientHeight;
+    global.canvas_width = document.body.clientWidth;
+    global.canvas_height = document.body.scrollHeight;
+    global.screen_height = document.body.clientHeight;
     // create more lily pads
     let new_num_lily_pads = Math.min(
       Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY),
@@ -91,8 +79,6 @@ const _app = new p5((sketch) => {
     for (let i = 0; i < lily_pads.length; i++) lily_pads[i].draw(sketch);
 
     global.t++;
-    global.scroll_y =
-      document.getElementById(global.MAIN_DIV_ID).scrollTop *
-      global.PARALLAX_RATIO;
+    global.scroll_y = document.body.scrollTop * global.PARALLAX_RATIO;
   };
 });
