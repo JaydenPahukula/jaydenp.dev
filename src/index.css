@@ -3,6 +3,9 @@
 @tailwind utilities;
 
 @layer components {
+  main {
+    @apply flex justify-center text-base leading-6 text-fgdark sm:text-lg md:leading-relaxed;
+  }
   section {
     @apply flex flex-col gap-4;
   }

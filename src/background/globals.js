@@ -3,7 +3,6 @@ export const global = {
     // constants
     FPS: 30,
     CANVAS_MARGIN: 150, // px
-    MAIN_DIV_ID: "main",
     BACKGROUND_DIV_ID: "background",
     PARALLAX_RATIO: 1/3,
 

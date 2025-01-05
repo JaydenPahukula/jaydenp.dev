@@ -1,15 +1,19 @@
 <!doctype html>
-<html lang="en">
+<html class="h-screen overflow-hidden" lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Jayden Pahukula</title>
     <link rel="icon" type="img/x-icon" href="favicon.ico?" />
     <link rel="stylesheet" href="src/index.css" />
-    <!-- <script defer type="module" src="src/background/sketch.js"></script> -->
+    <script defer type="module" src="src/background/sketch.js"></script>
   </head>
-  <body class="text-base leading-6 text-fgdark sm:text-lg md:leading-relaxed">
-    <main class="flex justify-center bg-bgtmp">
+  <body class="h-screen overflow-y-auto overflow-x-hidden [perspective:1px]">
+    <div
+      class="absolute inset-0 -z-10 [transform:translateZ(-2px)_scale(3.1)]"
+      id="background"
+    ></div>
+    <main>
       <div id="content" class="flex w-11/12 max-w-3xl flex-col gap-10 py-8">
         <section>
           <div class="card flex gap-3 p-3 sm:p-4">

@@ -14,17 +14,11 @@ module.exports = {
     fontFamily: {
       sans: ["Roboto", "sans-serif"],
     },
-    fontSize: {
-      sm: '1rem',
-      base: '1.1rem',
-      lg: '1.125rem',
-      xl: '1.25rem',
-      '2xl': '1.5rem',
-      '3xl': '1.875rem',
-      '4xl': '2.25rem',
-      '5xl': '3rem',
+    extend: {
+      fontSize: {
+        base: '1.1rem',
+      },
     },
-    extend: {},
   },
   plugins: [],
 };
