@@ -15,6 +15,7 @@ module.exports = {
       sans: ["Roboto", "sans-serif"],
     },
     fontSize: {
+      sm: '1rem',
       base: '1.1rem',
       lg: '1.125rem',
       xl: '1.25rem',

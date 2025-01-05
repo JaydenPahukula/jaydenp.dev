@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="src/index.css" />
     <!-- <script defer type="module" src="src/background/sketch.js"></script> -->
   </head>
-  <body class="text-base text-fgdark sm:text-lg">
+  <body class="text-base leading-6 text-fgdark sm:text-lg md:leading-relaxed">
     <main class="flex justify-center bg-bgtmp">
-      <div id="content" class="flex w-11/12 max-w-3xl flex-col gap-8 py-8">
+      <div id="content" class="flex w-11/12 max-w-3xl flex-col gap-10 py-8">
         <section>
           <div class="card flex gap-3 p-3 sm:p-4">
             <div class="p-3">
@@ -36,6 +36,7 @@
           <div class="card p-2">
             <h2 class="text-center text-3xl font-bold sm:text-4xl">Projects</h2>
           </div>
+          <!-- ================== JCHORDS ================== -->
           <div class="project-card">
             <div class="project-img-container group">
               <a href="https://jchords.com" target="noopener noreferrer">
@@ -83,6 +84,7 @@
                 <img class="project-img object-top" src="/img/scrabble.png" />
               </a>
             </div>
+            <!-- ================== SCRABBLE ================== -->
             <div class="project-content">
               <div class="project-header-row">
                 <h3 class="project-header">Scrabble</h3>
@@ -99,13 +101,54 @@
                   <label class="button-text">Github</label>
                 </a>
               </div>
-              <p>
-                A simple scrabble algorithm that plays on an infinitely
-                scrolling board.
-              </p>
-              <p>Made with vanilla TypeScript and p5js.</p>
+              <div class="h-full overflow-y-auto">
+                <p>
+                  A simple scrabble algorithm that plays on an infinitely
+                  scrolling board.
+                </p>
+                <p>Created with vanilla TypeScript and p5.js.</p>
+              </div>
             </div>
           </div>
+          <!-- ================== DOCKER DASH ================== -->
+          <div class="project-card">
+            <div class="project-img-container group">
+              <a href="https://jchords.com" target="noopener noreferrer">
+                <img class="project-img object-top" src="/img/dockerdash.jpg" />
+              </a>
+            </div>
+            <div class="project-content">
+              <div class="project-header-row">
+                <h3 class="project-header">Docker Dash</h3>
+                <a
+                  class="button bg-buttonblue"
+                  href="https://github.com/jaxsonp/docker-dash"
+                  target="noopener noreferrer"
+                >
+                  <img class="h-full" src="/svg/github-white.svg" />
+                  <label class="button-text">Github</label>
+                </a>
+              </div>
+              <div class="h-full overflow-y-auto">
+                <p>
+                  A dashboard to monitor server status and manage apps running
+                  as Docker containers on a server.
+                </p>
+                <p>
+                  This is my 2023 summer internship project for the
+                  <a
+                    class="link"
+                    href="https://arl.hawaii.edu"
+                    target="noopener noreferrer"
+                    >Applied Research Lab at the University of Hawai‘i</a
+                  >. It was a team project and I created the backend with a
+                  Python Flask API that interfaced with Docker, and supported
+                  multiple servers running swarm mode.
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- ================== MINES MAP ================== -->
           <div class="project-card">
             <div class="project-img-container group">
               <a
@@ -128,24 +171,102 @@
                 </a>
                 <a
                   class="button bg-buttonblue"
-                  href="https://github.com/JaydenPahukula/scrabble"
+                  href="https://github.com/TheGreatRambler/MinesMap"
                   target="noopener noreferrer"
                 >
                   <img class="h-full" src="/svg/github-white.svg" />
                   <label class="button-text">Github</label>
                 </a>
               </div>
-              <p>
-                An interactive map of the Mines campus to help guests and new
-                students navigate inside buildings.
-              </p>
-              <p>
-                This project was a team project that won 1st place at
-                <a class="link" href="https://blasterhacks.devpost.com/"
-                  >Blasterhacks 2024</a
-                >! It is made with Three.js, Solid.js, and Tailwind. I plan on
-                building into a full app in the future!
-              </p>
+              <div class="h-full overflow-y-auto">
+                <p>
+                  An interactive map of the Mines campus to help guests and new
+                  students navigate inside buildings.
+                </p>
+                <p>
+                  This project was a team project that won 1st place in the
+                  general advanced division at
+                  <a
+                    class="link"
+                    href="https://blasterhacks.devpost.com/"
+                    target="noopener noreferrer"
+                    >Blasterhacks 2024</a
+                  >! It is made with Three.js, Solid.js, and Tailwind. I plan on
+                  building into a full app in the future!
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <!-- ================== MINESWEEPER ================== -->
+            <div class="project-card-small">
+              <div class="project-img-container-top group">
+                <a
+                  href="https://github.com/JaydenPahukula/minesweeper"
+                  target="noopener noreferrer"
+                >
+                  <img class="project-img" src="/img/minesweeper.png" />
+                </a>
+              </div>
+              <div class="project-content-small">
+                <div class="project-header-row mb-1 sm:mb-2">
+                  <h3 class="project-header">Minesweeper</h3>
+                  <a
+                    class="button bg-buttonblue"
+                    href="https://github.com/JaydenPahukula/minesweeper"
+                    target="noopener noreferrer"
+                  >
+                    <img class="h-full" src="/svg/github-white.svg" />
+                  </a>
+                </div>
+                <p>It's minesweeper. Built with C++ and SFML.</p>
+              </div>
+            </div>
+            <!-- ================== LABWC MANAGER ================== -->
+            <div class="project-card-small">
+              <div class="project-img-container-top group">
+                <a
+                  href="https://github.com/JaydenPahukula/labwc-manager"
+                  target="noopener noreferrer"
+                >
+                  <img class="project-img" src="/img/labwcmanager.jpg" />
+                </a>
+              </div>
+              <div class="project-content-small">
+                <div class="project-header-row mb-1 sm:mb-2">
+                  <h3 class="project-header">Labwc Manager</h3>
+                  <a
+                    class="button bg-buttonblue"
+                    href="https://github.com/JaydenPahukula/labwc-manager"
+                    target="noopener noreferrer"
+                  >
+                    <img class="h-full" src="/svg/github-white.svg" />
+                  </a>
+                </div>
+                <p>Manage your labwc configuration with Nix Home Manager!</p>
+              </div>
+            </div>
+            <!-- ================== THIS SITE ================== -->
+            <div
+              class="project-card-small [mask-image:linear-gradient(to_top,#000_66%,transparent_66%);]"
+            >
+              <div class="project-img-container-top"></div>
+              <div class="project-content-small">
+                <div class="project-header-row mb-1 sm:mb-2">
+                  <h3 class="project-header">This Site!</h3>
+                  <a class="button" href="/">
+                    <img class="h-full" src="/svg/open-arrow-white.svg" />
+                  </a>
+                  <a
+                    class="button bg-buttonblue"
+                    href="https://github.com/JaydenPahukula/jaydenp.dev"
+                    target="noopener noreferrer"
+                  >
+                    <img class="h-full" src="/svg/github-white.svg" />
+                  </a>
+                </div>
+                <p>Made with vanilla JS and p5.js. Look at all the fishes...</p>
+              </div>
             </div>
           </div>
         </section>

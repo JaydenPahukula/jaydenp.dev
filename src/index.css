@@ -7,34 +7,46 @@
     @apply flex flex-col gap-4;
   }
   p {
-    @apply mb-2;
+    @apply mb-3;
   }
   .link {
     @apply text-fglink hover:underline active:underline;
   }
   .card {
-    @apply overflow-hidden rounded-2xl bg-bglight;
+    @apply w-full overflow-hidden rounded-2xl bg-bglight;
   }
   .project-card {
-    @apply card flex max-h-80 min-h-56;
+    @apply card flex max-h-80 min-h-52;
+  }
+  .project-card-small {
+    @apply project-card min-h-48 flex-col text-sm sm:text-lg;
   }
   .project-content {
-    @apply p-5;
+    @apply p-3 sm:p-5;
+  }
+  .project-content-small {
+    @apply p-3 pt-1 sm:p-4 sm:pt-2;
   }
   .project-header-row {
-    @apply mb-2 flex items-center gap-2;
+    @apply mb-3 flex max-h-fit items-center gap-2;
   }
   .project-header {
-    @apply flex-grow text-2xl font-bold sm:text-3xl;
+    @apply flex-shrink flex-grow overflow-hidden text-2xl font-bold leading-none sm:text-3xl;
+  }
+  .project-header-small {
+    @apply project-header text-lg sm:text-xl;
   }
   .button {
-    @apply flex h-10 min-w-10 cursor-pointer items-center rounded-lg bg-button p-1.5 text-base font-semibold text-fglight transition-opacity duration-200 hover:opacity-90 active:opacity-80 md:rounded-xl;
+    @apply flex h-10 min-w-10 flex-shrink-0 cursor-pointer items-center rounded-lg bg-button p-1.5 text-base font-semibold text-fglight transition-opacity duration-200 hover:opacity-90 active:opacity-80 md:rounded-xl;
   }
   .button-text {
     @apply hidden cursor-pointer px-2 md:block;
   }
   .project-img-container {
     @apply relative w-1/4 flex-shrink-0 overflow-hidden sm:w-1/3;
+  }
+  .project-img-container-top {
+    @apply project-img-container h-1/3 w-full;
   }
   .project-img {
     @apply absolute h-full w-full object-cover transition-all duration-500 ease-out group-hover:scale-110 group-hover:opacity-80 group-active:opacity-70;
