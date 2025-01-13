@@ -1,14 +1,14 @@
 import p5 from "p5/lib/p5.min.js";
-import { global } from "./globals.js";
 import { Fish } from "./Fish.js";
+import { global } from "./globals.js";
 import { LilyPad } from "./LilyPad.js";
 
-const FISH_DENSITY = 0.000006; // fish per pixel
+const FISH_DENSITY = 0.000008; // fish per pixel
 const MAX_NUM_FISH = 130;
 const LILY_PAD_DENSITY = 0.000004; // lily pads per pixel
 const MAX_NUM_LILY_PADS = 50;
 
-const BACKGROUND_COLOR = "#067BB1";
+const BACKGROUND_COLOR = "#278eab";
 
 const _app = new p5((sketch) => {
   let canvas;
@@ -30,7 +30,7 @@ const _app = new p5((sketch) => {
     // create fish
     let num_fish = Math.min(
       Math.floor(global.canvas_width * global.canvas_height * FISH_DENSITY),
-      MAX_NUM_FISH
+      MAX_NUM_FISH,
     );
     for (let i = 0; i < num_fish; i++) {
       fishies.push(new Fish());
@@ -38,7 +38,7 @@ const _app = new p5((sketch) => {
     // create lily pads
     let num_lily_pads = Math.min(
       Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY),
-      MAX_NUM_LILY_PADS
+      MAX_NUM_LILY_PADS,
     );
     for (let i = 0; i < num_lily_pads; i++) {
       lily_pads.push(new LilyPad(lily_pads));
@@ -52,7 +52,7 @@ const _app = new p5((sketch) => {
     // create more lily pads
     let new_num_lily_pads = Math.min(
       Math.floor(global.canvas_width * global.canvas_height * LILY_PAD_DENSITY),
-      MAX_NUM_LILY_PADS
+      MAX_NUM_LILY_PADS,
     );
     for (let i = lily_pads.length; i < new_num_lily_pads; i++) {
       lily_pads.push(new LilyPad(lily_pads));

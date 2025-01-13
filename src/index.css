@@ -6,17 +6,17 @@
   main {
     @apply flex justify-center text-base leading-6 text-fgdark sm:text-lg md:leading-relaxed;
   }
-  section {
-    @apply flex flex-col gap-4;
-  }
   p {
     @apply mb-3;
+  }
+  img {
+    @apply h-full;
   }
   .link {
     @apply text-fglink hover:underline active:underline;
   }
   .card {
-    @apply w-full overflow-hidden rounded-2xl bg-bglight;
+    @apply w-full overflow-hidden rounded-lg bg-bglight;
   }
   .project-card {
     @apply card flex max-h-80 min-h-52;
@@ -25,7 +25,7 @@
     @apply project-card min-h-48 flex-col text-sm sm:text-lg;
   }
   .project-content {
-    @apply p-3 sm:p-5;
+    @apply w-full p-3 sm:p-5;
   }
   .project-content-small {
     @apply p-3 pt-1 sm:p-4 sm:pt-2;
@@ -40,7 +40,7 @@
     @apply project-header text-lg sm:text-xl;
   }
   .button {
-    @apply flex h-10 min-w-10 flex-shrink-0 cursor-pointer items-center rounded-lg bg-button p-1.5 text-base font-semibold text-fglight transition-opacity duration-200 hover:opacity-90 active:opacity-80 md:rounded-xl;
+    @apply flex h-10 min-w-10 flex-shrink-0 cursor-pointer items-center rounded-md bg-button p-1.5 text-base font-semibold text-fglight transition-opacity duration-200 hover:opacity-90 active:opacity-80;
   }
   .button-text {
     @apply hidden cursor-pointer px-2 md:block;

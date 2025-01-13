@@ -14,29 +14,68 @@
       id="background"
     ></div>
     <main>
-      <div id="content" class="flex w-11/12 max-w-3xl flex-col gap-10 py-8">
-        <section>
-          <div class="card flex gap-3 p-3 sm:p-4">
-            <div class="p-3">
-              <h1 class="pb-1 text-4xl font-bold sm:text-5xl">
-                Jayden Pahukula
-              </h1>
-              <div class="flex flex-row items-center gap-1 pb-3">
-                <img class="h-4" src="/svg/location.svg" />
-                Golden, CO
-              </div>
-              <p class="sm:text-xl">
-                I am a software engineer and senior studying computer science at
-                Colorado School of Mines.
-              </p>
-            </div>
+      <div id="content" class="flex w-full flex-col items-center gap-10 py-8">
+        <section class="flex h-[85vh] w-11/12 max-w-5xl items-center">
+          <div
+            class="card grid-rows-[50%_1fr] gap-4 p-4 sm:p-5 md:grid md:grid-cols-[40%_1fr] md:grid-rows-1 md:gap-8 lg:grid-cols-[35%_1fr]"
+          >
             <img
-              class="w-1/4 min-w-28 flex-shrink-0 rounded-xl object-cover"
+              class="mb-3 h-full max-h-52 w-full max-w-60 justify-self-center rounded-md object-cover object-top md:mb-0 md:max-h-none md:max-w-none"
               src="/img/me.jpg"
             />
+            <div class="flex flex-col items-center md:items-start md:py-3">
+              <p class="my-1 text-center text-2xl font-bold md:text-left">
+                Hey! My name is
+              </p>
+              <h1
+                class="flex items-center pb-4 text-center text-5xl font-bold [flex-grow:2] md:text-left md:text-[4rem]"
+              >
+                Jayden Pahukula
+              </h1>
+              <p class="mb-0 flex flex-grow text-2xl font-bold md:text-3xl">
+                Software Engineer
+              </p>
+              <div class="mb-3 flex flex-grow flex-row gap-2">
+                <img
+                  class="h-5 self-center md:h-6 md:self-start"
+                  src="/svg/location-black.svg"
+                />
+                <p class="mb-0 text-2xl font-bold md:text-3xl">Golden, CO</p>
+              </div>
+              <div class="flex flex-grow items-end gap-4">
+                <a
+                  class="button bg-linkedinblue"
+                  href="https://www.linkedin.com/in/jaydenpahukula/"
+                  target="noopener noreferrer"
+                >
+                  <img src="/svg/linkedin-white.svg" />
+                </a>
+                <a
+                  class="button bg-buttonblue p-1"
+                  href="https://github.com/JaydenPahukula"
+                  target="noopener noreferrer"
+                >
+                  <img src="/svg/github-white.svg" />
+                </a>
+                <a
+                  class="button bg-buttongray"
+                  href="mailto:jayden.pahukula@gmail.com"
+                  target="noopener noreferrer"
+                >
+                  <img src="/svg/mail-white.svg" />
+                </a>
+                <a
+                  class="button"
+                  href="resume.pdf"
+                  target="noopener noreferrer"
+                >
+                  <img src="/svg/resume-white.svg" />
+                </a>
+              </div>
+            </div>
           </div>
         </section>
-        <section>
+        <section class="flex w-11/12 max-w-4xl flex-col gap-4">
           <div class="card p-2">
             <h2 class="text-center text-3xl font-bold sm:text-4xl">Projects</h2>
           </div>
@@ -57,7 +96,7 @@
                   href="https://jchords.com"
                   target="noopener noreferrer"
                 >
-                  <img class="h-full" src="/svg/open-arrow-white.svg" />
+                  <img src="/svg/open-arrow-white.svg" />
                   <label class="button-text">Try it</label>
                 </a>
                 <a
@@ -65,7 +104,7 @@
                   href="https://github.com/JaydenPahukula/jchords"
                   target="noopener noreferrer"
                 >
-                  <img class="h-full" src="/svg/github-white.svg" />
+                  <img src="/svg/github-white.svg" />
                   <label class="button-text">Github</label>
                 </a>
               </div>
@@ -93,7 +132,7 @@
               <div class="project-header-row">
                 <h3 class="project-header">Scrabble</h3>
                 <a class="button" href="scrabble" target="noopener noreferrer">
-                  <img class="h-full" src="/svg/open-arrow-white.svg" />
+                  <img src="/svg/open-arrow-white.svg" />
                   <label class="button-text">Try it</label>
                 </a>
                 <a
@@ -101,7 +140,7 @@
                   href="https://github.com/JaydenPahukula/scrabble"
                   target="noopener noreferrer"
                 >
-                  <img class="h-full" src="/svg/github-white.svg" />
+                  <img src="/svg/github-white.svg" />
                   <label class="button-text">Github</label>
                 </a>
               </div>
@@ -129,7 +168,7 @@
                   href="https://github.com/jaxsonp/docker-dash"
                   target="noopener noreferrer"
                 >
-                  <img class="h-full" src="/svg/github-white.svg" />
+                  <img src="/svg/github-white.svg" />
                   <label class="button-text">Github</label>
                 </a>
               </div>
@@ -166,11 +205,11 @@
               <div class="project-header-row">
                 <h3 class="project-header">Mines Map</h3>
                 <a
-                  class="button bg-buttonteal"
+                  class="button bg-devpostteal"
                   href="https://devpost.com/software/mines-map"
                   target="noopener noreferrer"
                 >
-                  <img class="h-full" src="/svg/devpost-white.svg" />
+                  <img src="/svg/devpost-white.svg" />
                   <label class="button-text">Devpost</label>
                 </a>
                 <a
@@ -178,7 +217,7 @@
                   href="https://github.com/TheGreatRambler/MinesMap"
                   target="noopener noreferrer"
                 >
-                  <img class="h-full" src="/svg/github-white.svg" />
+                  <img src="/svg/github-white.svg" />
                   <label class="button-text">Github</label>
                 </a>
               </div>
@@ -220,7 +259,7 @@
                     href="https://github.com/JaydenPahukula/minesweeper"
                     target="noopener noreferrer"
                   >
-                    <img class="h-full" src="/svg/github-white.svg" />
+                    <img src="/svg/github-white.svg" />
                   </a>
                 </div>
                 <p>It's minesweeper. Built with C++ and SFML.</p>
@@ -244,7 +283,7 @@
                     href="https://github.com/JaydenPahukula/labwc-manager"
                     target="noopener noreferrer"
                   >
-                    <img class="h-full" src="/svg/github-white.svg" />
+                    <img src="/svg/github-white.svg" />
                   </a>
                 </div>
                 <p>Manage your labwc configuration with Nix Home Manager!</p>
@@ -259,14 +298,14 @@
                 <div class="project-header-row mb-1 sm:mb-2">
                   <h3 class="project-header">This Site!</h3>
                   <a class="button" href="/">
-                    <img class="h-full" src="/svg/open-arrow-white.svg" />
+                    <img src="/svg/open-arrow-white.svg" />
                   </a>
                   <a
                     class="button bg-buttonblue"
                     href="https://github.com/JaydenPahukula/jaydenp.dev"
                     target="noopener noreferrer"
                   >
-                    <img class="h-full" src="/svg/github-white.svg" />
+                    <img src="/svg/github-white.svg" />
                   </a>
                 </div>
                 <p>Made with vanilla JS and p5.js. Look at all the fishes...</p>
