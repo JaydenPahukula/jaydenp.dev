@@ -15,8 +15,11 @@
   .link {
     @apply text-fglink hover:underline active:underline;
   }
+  .box-shadow {
+    box-shadow: 12px 12px rgba(0, 0, 0, 0.15);
+  }
   .card {
-    @apply w-full overflow-hidden rounded-lg bg-bglight;
+    @apply box-shadow w-full overflow-hidden rounded-lg bg-bglight;
   }
   .project-card {
     @apply card flex max-h-80 min-h-52;
