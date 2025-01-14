@@ -17,7 +17,7 @@ const _app = new p5((sketch) => {
 
   sketch.setup = () => {
     // initialize canvas
-    global.canvas_width = document.body.clientWidth;
+    global.canvas_width = document.body.clientWidth * 1.02;
     global.canvas_height = document.body.scrollHeight;
     global.screen_height = document.body.clientHeight;
     global.scroll_y = 0;
@@ -46,7 +46,7 @@ const _app = new p5((sketch) => {
   };
 
   sketch.windowResized = () => {
-    global.canvas_width = document.body.clientWidth;
+    global.canvas_width = document.body.clientWidth * 1.02;
     global.canvas_height = document.body.scrollHeight;
     global.screen_height = document.body.clientHeight;
     // create more lily pads
