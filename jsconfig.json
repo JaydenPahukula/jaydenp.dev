@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "paths": {
+      "src/*": ["./src/*"]
+    },
     "moduleResolution": "bundler",
     "target": "ESNext",
     "module": "ESNext",
@@ -28,5 +31,5 @@
    * Use global.d.ts instead of compilerOptions.types
    * to avoid limiting type declarations.
    */
-  "include": ["src/**/*.d.ts", "src/**/*.js"]
+  "include": ["src/**/*.d.ts", "src/**/*.js", "koi/**/*.js"]
 }

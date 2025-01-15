@@ -1,10 +1,10 @@
 module.exports = {
-  content: ["./index.html"],
+  content: ["./index.html", "koi/index.html"],
   theme: {
     colors: {
       bglight: "#fcfcfc",
       fgdark: "#000000",
-      fglink: "#1f2882",
+      fglink: "#172399",
       fglight: "#fcfcfc",
       button: "#383838",
       buttonblue: "#19358c",
