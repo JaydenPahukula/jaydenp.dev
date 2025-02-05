@@ -1,0 +1,21 @@
+{
+  "name": "scrabble",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write '{index.html,src/**/*}'",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "npm run build && vite preview"
+  },
+  "devDependencies": {
+    "@types/p5": "^1.7.6",
+    "prettier": "^3.3.3",
+    "prettier-plugin-organize-imports": "^4.1.0",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9"
+  },
+  "dependencies": {
+    "p5": "^1.11.2"
+  }
+}
