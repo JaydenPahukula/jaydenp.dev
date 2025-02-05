@@ -1,0 +1,3 @@
+[submodule "scrabble"]
+	path = scrabble
+	url = git@github.com:JaydenPahukula/scrabble.git
