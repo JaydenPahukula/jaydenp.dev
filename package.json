@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "format": "prettier --write '{index.html,src/index.css,src/**/*.js,public/svg/*.svg}'",
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "./build_scrabble.sh && vite",
+    "build": "./build_scrabble.sh && vite build && ./build_scrabble.sh --prod",
     "preview": "npm run build && vite preview",
     "deploy": "npm run build && gh-pages -d dist --nojekyll"
   },
