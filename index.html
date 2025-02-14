@@ -58,8 +58,7 @@
                   <img src="/svg/github-white.svg" />
                 </a>
                 <a
-                  class="button bg-buttongray"
-                  href="mailto:jayden.pahukula@gmail.com"
+                  class="button email-link bg-buttongray"
                   target="noopener noreferrer"
                 >
                   <img src="/svg/mail-white.svg" />
@@ -376,8 +375,7 @@
                 <img src="/svg/github-white.svg" />
               </a>
               <a
-                class="button bg-buttongray"
-                href="mailto:jayden.pahukula@gmail.com"
+                class="button email-link bg-buttongray"
                 target="noopener noreferrer"
               >
                 <img src="/svg/mail-white.svg" />
@@ -391,5 +389,10 @@
         </section>
       </div>
     </main>
+    <script>
+      Array.from(document.querySelectorAll(".email-link")).forEach(
+        (a) => (a.href = atob("bWFpbHRvOmpheWRlbi5wYWh1a3VsYUBnbWFpbC5jb20")),
+      );
+    </script>
   </body>
 </html>
