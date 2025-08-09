@@ -1,0 +1,1 @@
+import{p as e}from"./p5.min-CYwot99V.js";import{s as i,r as n,d as a}from"./sketch-Baobnr7-.js";new e(t=>{t.setup=()=>{const d=document.body.clientWidth,o=document.body.clientHeight;t.createCanvas(d,o).parent(document.body),i(t)},t.windowResized=()=>{const d=document.body.clientWidth,o=document.body.clientHeight;t.resizeCanvas(d,o),n(t,d,o)},t.draw=()=>{a(t)}});
