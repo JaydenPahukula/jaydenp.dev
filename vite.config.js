@@ -1,25 +1,27 @@
+import tailwindcss from "@tailwindcss/vite";
 import { resolve } from "path";
-import tailwindcss from "tailwindcss";
 import { defineConfig } from "vite";
 
+const src = resolve(__dirname, "src");
+
 export default defineConfig({
-  css: {
-    postcss: { plugins: [tailwindcss()] },
-  },
+  plugins: [tailwindcss()],
+  root: src,
+  publicDir: resolve(__dirname, "public"),
   build: {
-    outDir: "dist",
+    outDir: resolve(__dirname, "dist"),
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"),
-        koi: resolve(__dirname, "koi/index.html"),
-        scrabble: resolve(__dirname, "scrabble/index.html"),
+        main: resolve(src, "index.html"),
+        koi: resolve(src, "koi/index.html"),
+        scrabble: resolve(src, "scrabble/index.html"),
       },
     },
   },
   resolve: {
     alias: {
-      src: "/src",
+      src: src,
     },
   },
 });

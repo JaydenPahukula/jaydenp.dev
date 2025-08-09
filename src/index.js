@@ -1,12 +1,12 @@
 import p5 from "p5/lib/p5.min.js";
-import { draw, resize, setup } from "./background/sketch";
+import { draw, resize, setup } from "src/background/sketch";
 
 const _ = new p5((sketch) => {
   const parentDiv = document.getElementById("background");
   const contentDiv = document.getElementById("main");
 
   function calcCanvasSize() {
-    return [document.body.clientWidth * 1.05, contentDiv.clientHeight];
+    return [document.body.clientWidth * 1.05, contentDiv?.clientHeight ?? 0];
   }
 
   sketch.setup = () => {

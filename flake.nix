@@ -1,5 +1,5 @@
 {
-  description = "scrabble";
+  description = "jaydenp.dev";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
