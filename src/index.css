@@ -1,6 +1,8 @@
 @import "tailwindcss";
 
 @theme {
+  --color-water: #278eab;
+
   --color-bglight: #fcfcfc;
   --color-fgdark: #000000;
   --color-fglink: #172399;
@@ -24,6 +26,21 @@ p {
 
 img {
   @apply h-full;
+}
+
+.parallax-parent {
+  perspective: 1px;
+}
+
+.parallax {
+  position: absolute;
+  width: 100%;
+  transform: translateZ(-2px) scale(3);
+  transform-origin: 50vw 50vh;
+}
+
+main {
+  flex-shrink: 0;
 }
 
 @utility link {

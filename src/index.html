@@ -6,359 +6,46 @@
     <title>Jayden Pahukula</title>
     <link rel="icon" type="img/x-icon" href="/favicon.ico" />
     <link rel="stylesheet" href="index.css" />
-    <script defer type="module" src="index.js"></script>
+    <script defer type="module" src="index.ts"></script>
   </head>
-  <body class="h-screen overflow-x-hidden overflow-y-auto [perspective:1px]">
-    <div
-      id="background"
-      class="absolute z-[-1] w-[101vw] [transform:translateZ(-2px)_scale(3)]"
-    ></div>
-    <main id="main">
-      <div id="content" class="flex w-full flex-col items-center py-8">
-        <section class="flex h-[85vh] w-11/12 max-w-5xl items-center">
-          <div
-            class="card grid-rows-[50%_1fr] gap-4 p-4 sm:p-5 md:grid md:grid-cols-[40%_1fr] md:grid-rows-1 md:gap-8 lg:grid-cols-[35%_1fr]"
-          >
-            <img
-              class="mb-3 h-full max-h-52 w-full max-w-60 justify-self-center rounded-md object-cover object-top md:mb-0 md:max-h-none md:max-w-none"
-              src="/img/me.jpg"
-            />
-            <div class="flex flex-col items-center md:items-start md:py-3">
-              <p class="my-1 text-center text-2xl font-bold md:text-left">
-                Hey! My name is
-              </p>
-              <h1
-                class="flex [flex-grow:2] items-center pb-4 text-center text-5xl font-bold md:text-left md:text-[4rem]"
-              >
-                Jayden Pahukula
-              </h1>
-              <p class="mb-0 flex flex-grow text-2xl font-bold md:text-3xl">
-                Software Engineer
-              </p>
-              <div class="mb-3 flex flex-grow flex-row gap-2">
-                <img
-                  class="h-5! self-center md:h-6! md:self-start"
-                  src="/svg/location-black.svg"
-                />
-                <p class="mb-0 text-2xl font-bold md:text-3xl">Madison, WI</p>
-              </div>
-              <div class="flex flex-grow items-end gap-4">
-                <a
-                  class="button bg-linkedinblue"
-                  href="https://www.linkedin.com/in/jaydenpahukula/"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/linkedin-white.svg" />
-                </a>
-                <a
-                  class="button bg-buttonblue p-1"
-                  href="https://github.com/JaydenPahukula"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/github-white.svg" />
-                </a>
-                <a
-                  class="button email-link bg-buttongray"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/mail-white.svg" />
-                </a>
-                <a
-                  class="button"
-                  href="resume.pdf"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/resume-white.svg" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="mb-24 flex w-11/12 max-w-4xl flex-col gap-4">
-          <div class="card p-2">
-            <h2 class="text-center text-3xl font-bold sm:text-4xl">Projects</h2>
-          </div>
-          <!-- ================== JCHORDS ================== -->
-          <div class="project-card">
-            <div class="project-img-container group">
-              <a href="https://jchords.com" target="noopener noreferrer">
-                <div
-                  class="project-img flex items-center justify-center text-center"
-                >
-                  <i>*insert picture here*</i>
-                </div>
-              </a>
-            </div>
-            <div class="project-content">
-              <div class="project-header-row">
-                <h3 class="project-header">JChords</h3>
-                <a
-                  class="button"
-                  href="https://jchords.com"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/open-arrow-white.svg" />
-                  <label class="button-text">Try it</label>
-                </a>
-                <a
-                  class="button bg-buttonblue"
-                  href="https://github.com/JaydenPahukula/jchords"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/github-white.svg" />
-                  <label class="button-text">Github</label>
-                </a>
-              </div>
-              <div class="h-full overflow-y-auto">
-                <p>
-                  A homemade webapp for hosting and viewing chord charts. I play
-                  piano, and I got tired of existing sites being paywalled and
-                  full of ads, so I made my own!
-                </p>
-                <p>
-                  Through this project I learned React, TypeScript, Firebase,
-                  state management with Redux, and much more.
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- ================== SCRABBLE ================== -->
-          <div class="project-card">
-            <div class="project-img-container group">
-              <a href="scrabble/" target="noopener noreferrer">
-                <img class="project-img object-top" src="/img/scrabble.png" />
-              </a>
-            </div>
-            <div class="project-content">
-              <div class="project-header-row">
-                <h3 class="project-header">Scrabble</h3>
-                <a class="button" href="scrabble/" target="noopener noreferrer">
-                  <img src="/svg/open-arrow-white.svg" />
-                  <label class="button-text">Try it</label>
-                </a>
-                <a
-                  class="button bg-buttonblue"
-                  href="https://github.com/JaydenPahukula/scrabble"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/github-white.svg" />
-                  <label class="button-text">Github</label>
-                </a>
-              </div>
-              <div class="h-full overflow-y-auto">
-                <p>
-                  A simple scrabble algorithm that plays on an infinitely
-                  scrolling board.
-                </p>
-                <p>Created with vanilla TypeScript and p5.js.</p>
-              </div>
-            </div>
-          </div>
-          <!-- ================== DOCKER DASH ================== -->
-          <div class="project-card">
-            <div class="project-img-container group">
-              <a href="https://jchords.com" target="noopener noreferrer">
-                <img class="project-img object-top" src="/img/dockerdash.jpg" />
-              </a>
-            </div>
-            <div class="project-content">
-              <div class="project-header-row">
-                <h3 class="project-header">Docker Dash</h3>
-                <a
-                  class="button bg-buttonblue"
-                  href="https://github.com/jaxsonp/docker-dash"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/github-white.svg" />
-                  <label class="button-text">Github</label>
-                </a>
-              </div>
-              <div class="h-full overflow-y-auto">
-                <p>
-                  A dashboard to monitor server status and manage apps running
-                  as Docker containers on a server.
-                </p>
-                <p>
-                  This is my 2023 summer internship project for the
-                  <a
-                    class="link"
-                    href="https://arl.hawaii.edu"
-                    target="noopener noreferrer"
-                    >Applied Research Lab at the University of Hawai‘i</a
-                  >. It was a team project and I created the backend with a
-                  Python Flask API that interfaced with Docker, and supported
-                  multiple servers running swarm mode.
-                </p>
-              </div>
-            </div>
-          </div>
-          <!-- ================== MINES MAP ================== -->
-          <div class="project-card">
-            <div class="project-img-container group">
-              <a
-                href="https://devpost.com/software/mines-map"
-                target="noopener noreferrer"
-              >
-                <img class="project-img object-top" src="/img/minesmap.png" />
-              </a>
-            </div>
-            <div class="project-content">
-              <div class="project-header-row">
-                <h3 class="project-header">Mines Map</h3>
-                <a
-                  class="button bg-devpostteal"
-                  href="https://devpost.com/software/mines-map"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/devpost-white.svg" />
-                  <label class="button-text">Devpost</label>
-                </a>
-                <a
-                  class="button bg-buttonblue"
-                  href="https://github.com/TheGreatRambler/MinesMap"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/github-white.svg" />
-                  <label class="button-text">Github</label>
-                </a>
-              </div>
-              <div class="h-full overflow-y-auto">
-                <p>
-                  An interactive map of the Mines campus to help guests and new
-                  students navigate inside buildings.
-                </p>
-                <p>
-                  This project was a team project that won 1st place in the
-                  general advanced division at
-                  <a
-                    class="link"
-                    href="https://blasterhacks.devpost.com/"
-                    target="noopener noreferrer"
-                    >Blasterhacks 2024</a
-                  >! It is made with Three.js, Solid.js, and Tailwind. I plan on
-                  building into a full app in the future!
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="grid grid-cols-2 gap-4">
-            <!-- ================== MINESWEEPER ================== -->
-            <div class="project-card-small">
-              <div class="project-img-container-top group">
-                <a
-                  href="https://github.com/JaydenPahukula/minesweeper"
-                  target="noopener noreferrer"
-                >
-                  <img class="project-img" src="/img/minesweeper.png" />
-                </a>
-              </div>
-              <div class="project-content-small">
-                <div class="project-header-row mb-1 sm:mb-2">
-                  <h3 class="project-header">Minesweeper</h3>
-                  <a
-                    class="button bg-buttonblue"
-                    href="https://github.com/JaydenPahukula/minesweeper"
-                    target="noopener noreferrer"
-                  >
-                    <img src="/svg/github-white.svg" />
-                  </a>
-                </div>
-                <p>It's minesweeper. Built with C++ and SFML.</p>
-              </div>
-            </div>
-            <!-- ================== LABWC MANAGER ================== -->
-            <div class="project-card-small">
-              <div class="project-img-container-top group">
-                <a
-                  href="https://github.com/JaydenPahukula/labwc-manager"
-                  target="noopener noreferrer"
-                >
-                  <img class="project-img" src="/img/labwcmanager.jpg" />
-                </a>
-              </div>
-              <div class="project-content-small">
-                <div class="project-header-row mb-1 sm:mb-2">
-                  <h3 class="project-header">Labwc Manager</h3>
-                  <a
-                    class="button bg-buttonblue"
-                    href="https://github.com/JaydenPahukula/labwc-manager"
-                    target="noopener noreferrer"
-                  >
-                    <img src="/svg/github-white.svg" />
-                  </a>
-                </div>
-                <p>Manage your labwc configuration with Nix Home Manager!</p>
-              </div>
-            </div>
-            <!-- ================== THIS SITE ================== -->
-            <div
-              class="project-card-small overflow-visible bg-transparent shadow-none"
+  <body
+    class="bg-water parallax-parent relative h-full overflow-x-hidden overflow-y-auto"
+  >
+    <canvas id="canvas-lilypad-shadows" class="parallax"></canvas>
+    <canvas id="canvas-fish-shadows" class="parallax"></canvas>
+    <canvas id="canvas-fish" class="parallax"></canvas>
+    <canvas id="canvas-lilypads" class="parallax"></canvas>
+    <main
+      id="content"
+      class="absolute flex w-full translate-z-0 flex-col items-center py-8"
+    >
+      <section class="flex h-[85vh] w-11/12 max-w-5xl items-center">
+        <div
+          class="card grid-rows-[50%_1fr] gap-4 p-4 sm:p-5 md:grid md:grid-cols-[40%_1fr] md:grid-rows-1 md:gap-8 lg:grid-cols-[35%_1fr]"
+        >
+          <img
+            class="mb-3 h-full max-h-52 w-full max-w-60 justify-self-center rounded-md object-cover object-top md:mb-0 md:max-h-none md:max-w-none"
+            src="/img/me.jpg"
+          />
+          <div class="flex flex-col items-center md:items-start md:py-3">
+            <p class="my-1 text-center text-2xl font-bold md:text-left">
+              Hey! My name is
+            </p>
+            <h1
+              class="flex [flex-grow:2] items-center pb-4 text-center text-5xl font-bold md:text-left md:text-[4rem]"
             >
-              <div class="project-img-container-top"></div>
-              <div
-                class="project-content-small box-shadow bg-bglight overflow-hidden rounded-b-lg"
-              >
-                <div class="project-header-row mb-1 sm:mb-2">
-                  <h3 class="project-header">This Site!</h3>
-                  <a class="button" href="/">
-                    <img src="/svg/open-arrow-white.svg" />
-                  </a>
-                  <a
-                    class="button bg-buttonblue"
-                    href="https://github.com/JaydenPahukula/jaydenp.dev"
-                    target="noopener noreferrer"
-                  >
-                    <img src="/svg/github-white.svg" />
-                  </a>
-                </div>
-                <p class="mb-0">
-                  Made with vanilla JS and p5.js.
-                  <a class="link" href="koi/">Click here</a> to admire the
-                  fish...
-                </p>
-              </div>
+              Jayden Pahukula
+            </h1>
+            <p class="mb-0 flex flex-grow text-2xl font-bold md:text-3xl">
+              Software Engineer
+            </p>
+            <div class="mb-3 flex flex-grow gap-2">
+              <img
+                class="h-5! self-center md:h-6! md:self-start"
+                src="/svg/location-black.svg"
+              />
+              <p class="mb-0 text-2xl font-bold md:text-3xl">Madison, WI</p>
             </div>
-          </div>
-        </section>
-        <section class="mb-24 w-11/12 max-w-4xl">
-          <div class="card flex justify-center p-6 pb-8 text-lg sm:text-xl">
-            <div class="max-w-xl">
-              <h2 class="mb-4 text-center text-3xl font-bold sm:text-4xl">
-                About Me
-              </h2>
-              <p class="indent-10">
-                I am a software engineer and senior in computer science student
-                at Colorado School of Mines. I am a turbo nerd and I love
-                coding, so I am extremely grateful to be in a field where I can
-                do what I love.
-              </p>
-              <p class="indent-10">
-                I was born in Oregon and raised in Hawai'i, on the island of
-                Maui. I like playing pickup volleyball, hiking, cliff jumping,
-                and playing poker with my friends. I also enjoy playing piano,
-                and when I am home for break you can find me playing on my
-                church's worship team.
-              </p>
-              <p class="indent-10">
-                If you haven't already, scroll up to see some projects that I
-                have done, and for specific information about my experience,
-                check out my resume:
-              </p>
-              <div class="flex justify-center">
-                <a
-                  class="button"
-                  href="resume.pdf"
-                  target="noopener noreferrer"
-                >
-                  <img src="/svg/resume-white.svg" />
-                  <label class="button-text block">Resume</label>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section class="w-11/12 max-w-2xl">
-          <div class="card flex flex-col items-center gap-3 p-4 pt-5 text-lg">
             <div class="flex flex-grow items-end gap-4">
               <a
                 class="button bg-linkedinblue"
@@ -384,10 +71,316 @@
                 <img src="/svg/resume-white.svg" />
               </a>
             </div>
-            <p class="mb-0">Copyright (c) 2025 Jayden Pahukula</p>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+      <section class="mb-24 flex w-11/12 max-w-4xl flex-col gap-4">
+        <div class="card p-2">
+          <h2 class="text-center text-3xl font-bold sm:text-4xl">Projects</h2>
+        </div>
+        <!-- ================== JCHORDS ================== -->
+        <div class="project-card">
+          <div class="project-img-container group">
+            <a href="https://jchords.com" target="noopener noreferrer">
+              <div
+                class="project-img flex items-center justify-center text-center"
+              >
+                <i>*insert picture here*</i>
+              </div>
+            </a>
+          </div>
+          <div class="project-content">
+            <div class="project-header-row">
+              <h3 class="project-header">JChords</h3>
+              <a
+                class="button"
+                href="https://jchords.com"
+                target="noopener noreferrer"
+              >
+                <img src="/svg/open-arrow-white.svg" />
+                <label class="button-text">Try it</label>
+              </a>
+              <a
+                class="button bg-buttonblue"
+                href="https://github.com/JaydenPahukula/jchords"
+                target="noopener noreferrer"
+              >
+                <img src="/svg/github-white.svg" />
+                <label class="button-text">Github</label>
+              </a>
+            </div>
+            <div class="h-full overflow-y-auto">
+              <p>
+                A homemade webapp for hosting and viewing chord charts. I play
+                piano, and I got tired of existing sites being paywalled and
+                full of ads, so I made my own!
+              </p>
+              <p>
+                Through this project I learned React, TypeScript, Firebase,
+                state management with Redux, and much more.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- ================== SCRABBLE ================== -->
+        <div class="project-card">
+          <div class="project-img-container group">
+            <a href="scrabble/" target="noopener noreferrer">
+              <img class="project-img object-top" src="/img/scrabble.png" />
+            </a>
+          </div>
+          <div class="project-content">
+            <div class="project-header-row">
+              <h3 class="project-header">Scrabble</h3>
+              <a class="button" href="scrabble/" target="noopener noreferrer">
+                <img src="/svg/open-arrow-white.svg" />
+                <label class="button-text">Try it</label>
+              </a>
+              <a
+                class="button bg-buttonblue"
+                href="https://github.com/JaydenPahukula/scrabble"
+                target="noopener noreferrer"
+              >
+                <img src="/svg/github-white.svg" />
+                <label class="button-text">Github</label>
+              </a>
+            </div>
+            <div class="h-full overflow-y-auto">
+              <p>
+                A simple scrabble algorithm that plays on an infinitely
+                scrolling board.
+              </p>
+              <p>Created with vanilla TypeScript and p5.js.</p>
+            </div>
+          </div>
+        </div>
+        <!-- ================== DOCKER DASH ================== -->
+        <div class="project-card">
+          <div class="project-img-container group">
+            <a href="https://jchords.com" target="noopener noreferrer">
+              <img class="project-img object-top" src="/img/dockerdash.jpg" />
+            </a>
+          </div>
+          <div class="project-content">
+            <div class="project-header-row">
+              <h3 class="project-header">Docker Dash</h3>
+              <a
+                class="button bg-buttonblue"
+                href="https://github.com/jaxsonp/docker-dash"
+                target="noopener noreferrer"
+              >
+                <img src="/svg/github-white.svg" />
+                <label class="button-text">Github</label>
+              </a>
+            </div>
+            <div class="h-full overflow-y-auto">
+              <p>
+                A dashboard to monitor server status and manage apps running as
+                Docker containers on a server.
+              </p>
+              <p>
+                This is my 2023 summer internship project for the
+                <a
+                  class="link"
+                  href="https://arl.hawaii.edu"
+                  target="noopener noreferrer"
+                  >Applied Research Lab at the University of Hawai‘i</a
+                >. It was a team project and I created the backend with a Python
+                Flask API that interfaced with Docker, and supported multiple
+                servers running swarm mode.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- ================== MINES MAP ================== -->
+        <div class="project-card">
+          <div class="project-img-container group">
+            <a
+              href="https://devpost.com/software/mines-map"
+              target="noopener noreferrer"
+            >
+              <img class="project-img object-top" src="/img/minesmap.png" />
+            </a>
+          </div>
+          <div class="project-content">
+            <div class="project-header-row">
+              <h3 class="project-header">Mines Map</h3>
+              <a
+                class="button bg-devpostteal"
+                href="https://devpost.com/software/mines-map"
+                target="noopener noreferrer"
+              >
+                <img src="/svg/devpost-white.svg" />
+                <label class="button-text">Devpost</label>
+              </a>
+              <a
+                class="button bg-buttonblue"
+                href="https://github.com/TheGreatRambler/MinesMap"
+                target="noopener noreferrer"
+              >
+                <img src="/svg/github-white.svg" />
+                <label class="button-text">Github</label>
+              </a>
+            </div>
+            <div class="h-full overflow-y-auto">
+              <p>
+                An interactive map of the Mines campus to help guests and new
+                students navigate inside buildings.
+              </p>
+              <p>
+                This project was a team project that won 1st place in the
+                general advanced division at
+                <a
+                  class="link"
+                  href="https://blasterhacks.devpost.com/"
+                  target="noopener noreferrer"
+                  >Blasterhacks 2024</a
+                >! It is made with Three.js, Solid.js, and Tailwind.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+          <!-- ================== MINESWEEPER ================== -->
+          <div class="project-card-small">
+            <div class="project-img-container-top group">
+              <a
+                href="https://github.com/JaydenPahukula/minesweeper"
+                target="noopener noreferrer"
+              >
+                <img class="project-img" src="/img/minesweeper.png" />
+              </a>
+            </div>
+            <div class="project-content-small">
+              <div class="project-header-row mb-1 sm:mb-2">
+                <h3 class="project-header">Minesweeper</h3>
+                <a
+                  class="button bg-buttonblue"
+                  href="https://github.com/JaydenPahukula/minesweeper"
+                  target="noopener noreferrer"
+                >
+                  <img src="/svg/github-white.svg" />
+                </a>
+              </div>
+              <p>It's minesweeper. Built with C++ and SFML.</p>
+            </div>
+          </div>
+          <!-- ================== LABWC MANAGER ================== -->
+          <div class="project-card-small">
+            <div class="project-img-container-top group">
+              <a
+                href="https://github.com/JaydenPahukula/labwc-manager"
+                target="noopener noreferrer"
+              >
+                <img class="project-img" src="/img/labwcmanager.jpg" />
+              </a>
+            </div>
+            <div class="project-content-small">
+              <div class="project-header-row mb-1 sm:mb-2">
+                <h3 class="project-header">Labwc Manager</h3>
+                <a
+                  class="button bg-buttonblue"
+                  href="https://github.com/JaydenPahukula/labwc-manager"
+                  target="noopener noreferrer"
+                >
+                  <img src="/svg/github-white.svg" />
+                </a>
+              </div>
+              <p>Manage your labwc configuration with Nix Home Manager!</p>
+            </div>
+          </div>
+          <!-- ================== THIS SITE ================== -->
+          <div
+            class="project-card-small overflow-visible bg-transparent shadow-none"
+          >
+            <div class="project-img-container-top"></div>
+            <div
+              class="project-content-small box-shadow bg-bglight overflow-hidden rounded-b-lg"
+            >
+              <div class="project-header-row mb-1 sm:mb-2">
+                <h3 class="project-header">This Site!</h3>
+                <a class="button" href="/">
+                  <img src="/svg/open-arrow-white.svg" />
+                </a>
+                <a
+                  class="button bg-buttonblue"
+                  href="https://github.com/JaydenPahukula/jaydenp.dev"
+                  target="noopener noreferrer"
+                >
+                  <img src="/svg/github-white.svg" />
+                </a>
+              </div>
+              <p class="mb-0">
+                Made with vanilla JS and p5.js.
+                <a class="link" href="koi/">Click here</a> to admire the fish...
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="mb-24 w-11/12 max-w-4xl">
+        <div class="card flex justify-center p-6 pb-8 text-lg sm:text-xl">
+          <div class="max-w-xl">
+            <h2 class="mb-4 text-center text-3xl font-bold sm:text-4xl">
+              About Me
+            </h2>
+            <p class="indent-10">
+              I am a software engineer and senior in computer science student at
+              Colorado School of Mines. I am a turbo nerd and I love coding, so
+              I am extremely grateful to be in a field where I can do what I
+              love.
+            </p>
+            <p class="indent-10">
+              I was born in Oregon and raised in Hawai'i, on the island of Maui.
+              I like playing pickup volleyball, hiking, cliff jumping, and
+              playing poker with my friends. I also enjoy playing piano, and
+              when I am home for break you can find me playing on my church's
+              worship team.
+            </p>
+            <p class="indent-10">
+              If you haven't already, scroll up to see some projects that I have
+              done, and for specific information about my experience, check out
+              my resume:
+            </p>
+            <div class="flex justify-center">
+              <a class="button" href="resume.pdf" target="noopener noreferrer">
+                <img src="/svg/resume-white.svg" />
+                <label class="button-text block">Resume</label>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="w-11/12 max-w-2xl">
+        <div class="card flex flex-col items-center gap-3 p-4 pt-5 text-lg">
+          <div class="flex flex-grow items-end gap-4">
+            <a
+              class="button bg-linkedinblue"
+              href="https://www.linkedin.com/in/jaydenpahukula/"
+              target="noopener noreferrer"
+            >
+              <img src="/svg/linkedin-white.svg" />
+            </a>
+            <a
+              class="button bg-buttonblue p-1"
+              href="https://github.com/JaydenPahukula"
+              target="noopener noreferrer"
+            >
+              <img src="/svg/github-white.svg" />
+            </a>
+            <a
+              class="button email-link bg-buttongray"
+              target="noopener noreferrer"
+            >
+              <img src="/svg/mail-white.svg" />
+            </a>
+            <a class="button" href="resume.pdf" target="noopener noreferrer">
+              <img src="/svg/resume-white.svg" />
+            </a>
+          </div>
+          <p class="mb-0">Copyright (c) 2025 Jayden Pahukula</p>
+        </div>
+      </section>
     </main>
     <script>
       Array.from(document.querySelectorAll(".email-link")).forEach(
