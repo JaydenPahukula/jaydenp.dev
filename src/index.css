@@ -29,6 +29,8 @@ img {
 }
 
 .parallax-parent {
+  background: var(--bg-water);
+  position: relative;
   perspective: 1px;
 }
 
@@ -52,7 +54,7 @@ main {
 }
 
 @utility card {
-  @apply box-shadow bg-bglight w-full overflow-hidden rounded-lg;
+  @apply box-shadow w-full overflow-hidden rounded-lg bg-transparent;
 }
 
 @utility project-card {

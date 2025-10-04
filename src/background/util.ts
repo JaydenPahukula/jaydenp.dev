@@ -70,14 +70,22 @@ export class Vector {
   public getOrth(): Vector {
     return new Vector(this.y, -this.x);
   }
-  public getRotated(angle: number): Vector {
+  public rotate(angle: number): Vector {
     let c = Math.cos(angle);
     let s = Math.sin(angle);
-    return new Vector(c * this.x - s * this.y, s * this.x + c * this.y);
+    [this.x, this.y] = [c * this.x - s * this.y, s * this.x + c * this.y];
+    return this;
   }
   public dot(v: Vector): number {
     return this.x * v.x + this.y * v.y;
   }
+  public angleBetween(v: Vector): number {
+    return this.dot(v) / this.magnitude() / v.magnitude();
+  }
+}
+
+export function sum(array: number[]) {
+  return array.reduce((total, val) => total + val, 0);
 }
 
 /** Clamp angle within [-pi, pi) */
@@ -97,4 +105,8 @@ export function randInt(low: number, high: number) {
 
 export function randBool() {
   return randFloat(0, 1) < 0.5;
+}
+
+export function randChoice<T>(array: T[]): T {
+  return array[randInt(0, array.length)];
 }

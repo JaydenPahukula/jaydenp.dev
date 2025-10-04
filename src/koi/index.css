@@ -1,6 +1,17 @@
 html,
-body {
+body,
+main {
   margin: 0;
   height: 100%;
   overflow: hidden;
+}
+
+body {
+  position: relative;
+  background: #278eab;
+}
+
+canvas {
+  position: absolute;
+  width: 100%;
 }
