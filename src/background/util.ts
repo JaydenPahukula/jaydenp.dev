@@ -59,8 +59,8 @@ export class Vector {
     this.y -= v.y;
     return this;
   }
-  public normalize(): Vector {
-    const len = this.magnitude();
+  public normalize(n: number = 1): Vector {
+    const len = this.magnitude() / n;
     if (len != 0) {
       this.x /= len;
       this.y /= len;
@@ -91,6 +91,16 @@ export function sum(array: number[]) {
 /** Clamp angle within [-pi, pi) */
 export function clampAngle(angle: number) {
   return ((angle + Math.PI) % (2 * Math.PI)) - Math.PI;
+}
+
+/** Linear interpolation */
+export function lerp(val: number, low: number, high: number) {
+  return low + (high - low) * val;
+}
+
+/** Inverse linear interpolation */
+export function iLerp(val: number, low: number, high: number) {
+  return low === high ? 0 : (val - low) / (high - low);
 }
 
 /** Random float between [low, high) */

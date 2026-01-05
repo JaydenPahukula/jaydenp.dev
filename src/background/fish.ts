@@ -1,6 +1,8 @@
 import { COLORS } from "src/background/colors";
 import {
+  iLerp,
   initCtx,
+  lerp,
   randBool,
   randFloat,
   randInt,
@@ -12,40 +14,33 @@ const MARGIN = 0; //150;
 const FISH_DENSITY = 0.000002; // fish per pixel
 const MAX_NUM_FISH = 1;
 // body
-const MAX_SIZE = 1.5;
+const MAX_SIZE = 1;
 const MIN_SIZE = 1;
-const BODY_WIDTH = 95; // at widest point
-const BODY_SEG_LEN_SCALE = 17;
-const BODY: [number, number, number, number][] = [
-  // [body width, segment length (relative), movement, tail width]
-  [0.0, 0, 0, 0],
-  [0.0, 0, 0, 0],
-  [0.3, 0.25, 0, 0],
-  [0.46, 0.5, 0, 0],
-  [0.57, 0.5, 0, 0],
-  [0.73, 1, 0, 0],
-  [0.86, 1, 0, 0],
-  [0.97, 1.5, 0, 0],
-  [1.0, 1.5, 0, 0],
-  [1.0, 1.5, 0, 0],
-  [0.98, 1.5, 0.5, 0],
-  [0.94, 1.5, 1, 0],
-  [0.86, 1.5, 1, 0],
-  [0.76, 1, 2, 0],
-  [0.69, 1, 2, 0],
-  [0.59, 1, 3, 0],
-  [0.5, 1, 3, 0],
-  [0.41, 1, 0, 0],
-  [0.32, 1, 0, 0],
-  [0.21, 1, 0, 10],
-  [0.12, 1, 0, 10],
-  [0, 1, 0, 9],
-  [0.0, 0.5, 0, 8],
-  [0.0, 0.5, 0, 7],
-  [0.0, 0.5, 0, 6],
-  [0.0, 0.5, 0, 5],
-  [0.0, 0.5, 0, 4],
-  [0.0, 0.5, 0, 4],
+const BODY_WIDTH = 95; // px at widest point
+const BODY_LENGTH = 300; // px tip to tail
+const BODY: [number, number][] = [
+  // [relative width, relative length]
+  [0.0, 0.0],
+  [0.3, 0.25],
+  [0.46, 0.5],
+  [0.57, 0.5],
+  [0.73, 1.0],
+  [0.86, 1.0],
+  [0.97, 1.5],
+  [1.0, 1.5],
+  [1.0, 1.5],
+  [0.98, 1.5],
+  [0.94, 1.5],
+  [0.86, 1.5],
+  [0.76, 1.0],
+  [0.69, 1.0],
+  [0.59, 1.0],
+  [0.5, 1.0],
+  [0.41, 1.0],
+  [0.32, 1.0],
+  [0.21, 1.0],
+  [0.12, 1.0],
+  [0.0, 1.0],
 ];
 // design
 const MIN_NUM_SPOTS = 4;
@@ -58,32 +53,34 @@ const MAX_SPOT_DEPTH = 2.4;
 const SHADOW_OFFSET_X = 6;
 const SHADOW_OFFSET_Y = 6;
 // movement
-const VEL_CONST = 2;
-const MIN_VEL = 25; // px per second
-const RESISTANCE = 0.35;
-const TAIL_CURVE = 0.02;
-const TAIL_SPEED = 0.3; // seconds
-const TURN_THRUST = 35;
-const THRUST_RESISTANCE = 0.23;
-const MIN_TURN_ANGLE = 0.5; // rads
-const MAX_TURN_ANGLE = 1.1; // rads
-// behavior
-const MIN_S_BETWEEN_TURNS = 0.4;
-const MAX_S_BETWEEN_TURNS = 2;
+const SPEED_DECAY = 0.8; // decay factor per second
+const SPEED_MIN = 1.5; // px per frame
+const SPEED_NIBBLE = 1.55;
+const SPEED_SLOW = 2.5;
+const SPEED_MAX = 8.0;
+const BOOST_CHANCE = 0.4; // probability per second (when < SPEED_SLOW)
+const BOOST_POWER = 7; // px per second per second
+const BOOST_SECONDS_MIN = 0.4;
+const BOOST_SECONDS_MAX = 1;
+const TURN_CHANCE = 0.0015;
+// const TURN_ANGLE_MAX =
+
+const OSC_PERIOD_MIN = 3; // oscillation period (seconds) when speed = SPEED_MIN
+const OSC_PERIOD_MAX = 3; // oscillation period (seconds) when speed = SPEED_MAX
+const OSC_AMPLITUDE_MIN = 2;
+const OSC_AMPLITUDE_MAX = 2;
+const SPEED_SWING_THRESH = 1.0;
+const FIN_PHASE_SPEED = 0.04;
 // ===================================================
 
+const PI2 = 2 * Math.PI;
+const OSC_FREQ_MIN = PI2 / OSC_PERIOD_MIN;
+const OSC_FREQ_MAX = PI2 / OSC_PERIOD_MAX;
 const NUM_SEGMENTS = BODY.length;
+const relativeBodyLen = BODY.reduce((x, body) => x + body[1], 0);
 for (let i = 0; i < NUM_SEGMENTS; i++) {
   BODY[i][0] *= BODY_WIDTH / 2;
-  BODY[i][1] *= BODY_SEG_LEN_SCALE;
-  BODY[i][2] *= TAIL_CURVE;
-}
-let BODY_END = NUM_SEGMENTS - 1; // where the body ends so we don't put spots after the body
-for (let i = NUM_SEGMENTS - 1; i > 0; i--) {
-  if (BODY[i][0] !== 0) {
-    BODY_END = i;
-    break;
-  }
+  BODY[i][1] *= BODY_LENGTH / relativeBodyLen;
 }
 
 const [canvas, ctx] = initCtx("canvas-fish");
@@ -109,35 +106,34 @@ function bothFill() {
 }
 
 class Fish {
-  private pos = Array(NUM_SEGMENTS)
+  private pos = new Vector();
+  private vel = new Vector();
+  private dir = new Vector();
+  private boost = 0;
+  private turnForce = 0;
+  private phase = 0;
+  private turnDirection = 0;
+
+  private body = Array(NUM_SEGMENTS)
     .fill(null)
     .map(() => new Vector());
-  private vel = new Vector();
-  private acc = new Vector();
 
   private size = randInt(MIN_SIZE, MAX_SIZE);
 
   private primary_color: string;
   private secondary_color: string;
-
   // each spot is a list of points [x,y][] where x is the segment index and y (in [-1,1]) is the position across the body
   private spots: [number, number][][];
 
-  private s_since_last_turn = 0;
-  private next_turn = 0;
-  private turn_angle = 0;
-  private turn_direction = 1;
-
   constructor() {
-    this.pos[0].x = randInt(-MARGIN, canvas.width + MARGIN);
-    this.pos[0].y = randInt(-MARGIN, canvas.height + MARGIN);
-    this.pos[0].x = 500;
-    this.pos[0].y = 500;
+    this.pos.x = randInt(-MARGIN, canvas.width + MARGIN);
+    this.pos.y = randInt(-MARGIN, canvas.height + MARGIN);
+    this.pos.x = 500;
+    this.pos.y = 500;
 
     const angle = randFloat(-Math.PI, Math.PI);
-    // const angle = Math.PI / 4;
-    this.vel.x = MIN_VEL * Math.cos(angle);
-    this.vel.y = MIN_VEL * Math.sin(angle);
+    this.vel.x = SPEED_MIN * Math.cos(angle);
+    this.vel.y = SPEED_MIN * Math.sin(angle);
 
     const c1 = randInt(0, COLORS.FISH.length);
     let c2 = randInt(0, COLORS.FISH.length);
@@ -151,7 +147,7 @@ class Fish {
       .fill(null)
       .map(() => {
         let spot: [number, number][] = [];
-        const x = randInt(2, BODY_END);
+        const x = randInt(2, NUM_SEGMENTS);
         const w = randInt(MIN_SPOT_WIDTH, MAX_SPOT_WIDTH + 1);
         const h = randInt(MIN_SPOT_DEPTH, MAX_SPOT_DEPTH + 1);
         for (
@@ -180,87 +176,125 @@ class Fish {
   }
 
   move(dt: number) {
-    // turning
-    this.s_since_last_turn += dt;
-    if (this.s_since_last_turn >= this.next_turn) {
-      this.s_since_last_turn = 0;
-      this.next_turn = randFloat(MIN_S_BETWEEN_TURNS, MAX_S_BETWEEN_TURNS + 1);
-      this.turn_direction = -this.turn_direction;
-      this.turn_angle =
-        randFloat(MIN_TURN_ANGLE, MAX_TURN_ANGLE) * this.turn_direction;
-      const thrust = Math.abs(this.turn_angle) * TURN_THRUST;
-      console.log("TURN");
-      this.acc = new Vector(
-        Math.cos(this.turn_angle),
-        Math.sin(this.turn_angle),
-      ).scale(thrust);
+    // if (this.turnDirection)
+    //     this.applyTurn();
+
+    let speed = this.vel.magnitude();
+
+    // apply speed decay
+    speed *= Math.pow(SPEED_DECAY, dt);
+    if (speed < SPEED_MIN) speed = SPEED_MIN;
+
+    // apply boost
+    if (this.boost > 0) {
+      this.boost -= dt;
+      speed += BOOST_POWER * dt;
+      if (speed > SPEED_MAX) speed = SPEED_MAX;
     }
 
-    this.acc.scale(1 - THRUST_RESISTANCE);
+    // idk what this is
+    this.dir = this.vel.copy().normalize();
+    this.vel = this.dir.copy();
 
-    // apply acceleration
-    this.vel.add(this.acc);
-    // resistance
-    this.vel.scale(Math.pow(1 - RESISTANCE, dt));
-    // bound velocity
-    if (this.vel.magnitude() < MIN_VEL) {
-      this.vel.normalize().scale(MIN_VEL);
+    if (speed < SPEED_SLOW) {
+      if (this.boost <= 0 && randFloat(0, 1) < BOOST_CHANCE * dt) {
+        // start new boost
+        this.boost = randFloat(BOOST_SECONDS_MIN, BOOST_SECONDS_MAX);
+        console.log("BOOST!!! (for", this.boost, "seconds)");
+      } else if (this.turnForce === 0 && randFloat(0, 1) < TURN_CHANCE * dt) {
+        // const angle = this.direction.angle() + Math.PI + this.TURN_AMPLITUDE * (random.getFloat() * 2 - 1);
+        // this.turnDirection.fromAngle(angle);
+        // this.turnForce = this.TURN_FORCE;
+      } else if (speed < SPEED_NIBBLE) {
+        // if (--this.nibbleTime === 0) {
+        //   this.nibbleTime =
+        //     this.NIBBLE_TIME_MIN +
+        //     Math.floor(
+        //       (this.NIBBLE_TIME_MAX - this.NIBBLE_TIME_MIN) * random.getFloat(),
+        //     );
+        //   // WATER FLARE
+        //   const turnForce =
+        //     2 * (random.getFloat() - 0.5) * this.NIBBLE_TURN_FORCE;
+        //   this.velocity.x += this.direction.y * turnForce;
+        //   this.velocity.y -= this.direction.x * turnForce;
+        //   this.velocity.normalize();
+      }
     }
 
-    // update position (and apply speed factor)
-    this.pos[0].add(this.vel.copy().scale(dt * VEL_CONST));
+    this.vel.normalize(speed);
+    this.pos.add(this.vel);
     // wrap around canvas
-    if (this.pos[0].x < -MARGIN) this.pos[0].x = canvas.width + MARGIN;
-    if (this.pos[0].x > canvas.width + MARGIN) this.pos[0].x = -MARGIN;
-    if (this.pos[0].y < -MARGIN) this.pos[0].y = canvas.height + MARGIN;
-    if (this.pos[0].y > canvas.height + MARGIN) this.pos[0].y = -MARGIN;
+    if (this.pos.x < -MARGIN) this.pos.x = canvas.width + MARGIN;
+    if (this.pos.x > canvas.width + MARGIN) this.pos.x = -MARGIN;
+    if (this.pos.y < -MARGIN) this.pos.y = canvas.height + MARGIN;
+    if (this.pos.y > canvas.height + MARGIN) this.pos.y = -MARGIN;
 
-    // calc tail movement
-    let tail_angle = 0;
-    if (this.s_since_last_turn < TAIL_SPEED) {
-      tail_angle = -this.turn_direction * (1 + this.turn_angle / 2);
-      Math.cos(((2 * Math.PI) / TAIL_SPEED) * this.s_since_last_turn) *
-        TAIL_CURVE;
-      // console.log(
-      //   "tail_angle:",
-      //   Math.sin(((2 * Math.PI) / TAIL_SPEED) * this.s_since_last_turn),
-      // );
-    }
-    // move the rest of the body
-    let total_curve = 0;
-    for (let i = 1; i < NUM_SEGMENTS; i++) {
-      const diff = this.pos[i].copy().subtract(this.pos[i - 1]);
-      // pull next body segment along (clamp distance to be <= this.segment_length)
+    // body direction
+    let dir = this.dir
+      .copy()
+      .normalize(-1)
+      .rotate(Math.cos(this.phase) * (speed - 1.0) * 0.2);
+    console.log(
+      Math.cos(this.phase) *
+        lerp(
+          iLerp(speed, SPEED_MIN, SPEED_MAX),
+          OSC_AMPLITUDE_MIN,
+          OSC_AMPLITUDE_MAX,
+        ),
+    );
+
+    this.body[0] = this.pos;
+    for (let i = 1; i < this.body.length; ++i) {
       const segLen = BODY[i][1] * this.size;
-      if (diff.magnitude() > segLen) {
-        diff.normalize().scale(segLen);
-      }
-      // apply tail curve
-      if (tail_angle !== 0) {
-        total_curve += tail_angle * BODY[i][2];
-        diff.rotate(total_curve);
-      }
-      this.pos[i] = this.pos[i - 1].copy().add(diff);
+      const diff = this.body[i].copy().subtract(this.body[i - 1]);
+
+      const spring = 0.4;
+      const targetDiff = this.body[i - 1]
+        .copy()
+        .add(dir.copy().scale(segLen))
+        .subtract(this.body[i]);
+
+      // if (i === 1) {
+      //   console.log(this.vel);
+      //   diff,
+      //   targetDiff
+      // }
+      const dirPrev = dir.copy();
+      dir = diff.copy().normalize();
+
+      diff.add(targetDiff.scale(spring));
+
+      this.body[i] = this.body[i - 1].copy().add(diff.normalize(segLen));
+
+      // update fin
     }
+
+    // this.tail.update(this.spine);
+    this.phase +=
+      lerp(iLerp(speed, SPEED_MIN, SPEED_MAX), OSC_FREQ_MIN, OSC_FREQ_MAX) * dt;
+    if (this.phase > PI2)
+      console.log("===========================================", Date.now());
+    if (this.phase > PI2) this.phase -= PI2;
+    // this.finPhase = clampAngle(this.finPhase + FIN_PHASE_SPEED * dt);
   }
 
   // draw the fish
   draw() {
     const orths = [new Vector(), new Vector()];
     for (let i = 2; i < NUM_SEGMENTS; i++) {
-      const diff = this.pos[i].copy().subtract(this.pos[i - 1]);
+      const diff = this.body[i].copy().subtract(this.body[i - 1]);
       orths.push(diff.getOrth().normalize());
     }
     // draw body
     ctx.fillStyle = this.primary_color;
     shadowCtx.fillStyle = COLORS.SHADOW;
-    bothBeginPath(this.pos[1]);
+    bothBeginPath(this.body[1]);
     for (let i = 2; i < NUM_SEGMENTS; i++) {
       bothLineTo(
         orths[i]
           .copy()
           .scale(BODY[i][0] * this.size)
-          .add(this.pos[i]),
+          .add(this.body[i]),
       );
     }
     for (let i = NUM_SEGMENTS - 2; i > 1; i--) {
@@ -268,10 +302,10 @@ class Fish {
         orths[i]
           .copy()
           .scale(-1 * BODY[i][0] * this.size)
-          .add(this.pos[i]),
+          .add(this.body[i]),
       );
     }
-    bothLineTo(this.pos[1]);
+    bothLineTo(this.body[1]);
     bothFill();
 
     if (this.primary_color != this.secondary_color) {
@@ -282,7 +316,7 @@ class Fish {
           return orths[x]
             .copy()
             .scale(BODY[x][0] * this.size * y)
-            .add(this.pos[x]);
+            .add(this.body[x]);
         });
         ctx.beginPath();
         ctx.moveTo(path[0].x, path[0].y);
@@ -295,25 +329,25 @@ class Fish {
     }
 
     // draw tail
-    ctx.strokeStyle = this.primary_color;
-    ctx.lineCap = "round";
-    shadowCtx.strokeStyle = COLORS.SHADOW;
-    let i = 2;
-    while (i < NUM_SEGMENTS && BODY[i][3] === 0) i++;
-    bothBeginPath(this.pos[i]);
-    ctx.lineWidth = BODY[i][3];
-    shadowCtx.lineWidth = BODY[i][3];
-    i++;
-    for (; i < NUM_SEGMENTS; i++) {
-      bothLineTo(this.pos[i]);
-      bothStroke();
-      ctx.lineWidth = BODY[i][3];
-      shadowCtx.lineWidth = BODY[i][3];
-    }
+    // ctx.strokeStyle = this.primary_color;
+    // ctx.lineCap = "round";
+    // shadowCtx.strokeStyle = COLORS.SHADOW;
+    // let i = 2;
+    // while (i < NUM_SEGMENTS && BODY[i][3] === 0) i++;
+    // bothBeginPath(this.body[i]);
+    // ctx.lineWidth = BODY[i][3];
+    // shadowCtx.lineWidth = BODY[i][3];
+    // i++;
+    // for (; i < NUM_SEGMENTS; i++) {
+    //   bothLineTo(this.body[i]);
+    //   bothStroke();
+    //   ctx.lineWidth = BODY[i][3];
+    //   shadowCtx.lineWidth = BODY[i][3];
+    // }
 
     // ctx.strokeStyle = "magenta";
     // ctx.lineWidth = 4;
-    // const pos = this.pos[0];
+    // const pos = this.body[0];
     // const vel = this.vel.copy().scale(0.5);
     // ctx.beginPath();
     // ctx.moveTo(pos.x, pos.y);
@@ -327,7 +361,7 @@ class Fish {
     // ctx.stroke();
     // for (let i = 0; i < NUM_SEGMENTS; i++) {
     //   ctx.fillStyle = "magenta";
-    //   ctx.fillRect(this.pos[i].x, this.pos[i].y, 3, 3);
+    //   ctx.fillRect(this.body[i].x, this.body[i].y, 3, 3);
     // }
   }
 }
